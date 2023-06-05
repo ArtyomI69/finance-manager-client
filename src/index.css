@@ -47,7 +47,7 @@ Large: 1.8
 --- 06 BORDER-RADIUS
 
 Default: 9px
-Medium: 11px
+Medium: 15px
 
 --- 07 WHITESPACE
 
@@ -72,7 +72,7 @@ html {
 }
 
 body {
-  font-family: "Rubik";
+  font-family: "Rubik", sans-serif;
   line-height: 1;
   font-weight: 400;
   color: #555;
