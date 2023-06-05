@@ -22,6 +22,7 @@
   justify-self: start;
   font-size: 1.6rem;
   font-weight: 700;
+  color: #000;
 }
 
 .user-balance {
@@ -29,4 +30,9 @@
   justify-self: start;
   font-size: 1.4rem;
   font-weight: 600;
+}
+
+.user-balance span {
+  font-weight: 700;
+  color: #000;
 }

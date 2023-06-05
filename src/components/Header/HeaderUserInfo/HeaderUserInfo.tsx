@@ -10,7 +10,9 @@ const HeaderUserInfo: FC = () => {
         <UserPhoto />
       </div>
       <p className={styles["user-name"]}>Евгегний Петров</p>
-      <p className={styles["user-balance"]}>Баланс: $999.99</p>
+      <p className={styles["user-balance"]}>
+        Баланс: <span>999.99 ₽</span>
+      </p>
     </div>
   );
 };
