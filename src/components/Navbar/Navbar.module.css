@@ -1,0 +1,24 @@
+.navbar {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0 1.2rem;
+  height: 100%;
+}
+
+.nav-list {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.nav-list svg {
+  margin-right: 1.2rem;
+}
+
+.nav-list li:last-child {
+  margin-top: auto;
+}

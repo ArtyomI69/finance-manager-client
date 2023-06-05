@@ -1,22 +1,9 @@
 .app {
-  padding: 3rem;
+  padding: 3.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 3.6rem;
   height: 100vh;
-}
-
-.header {
-  width: 20%;
-  height: 100%;
-  background-color: red;
-  border-radius: 1.5rem;
-}
-
-.main {
-  width: 80%;
-  height: 100%;
-  background-color: purple;
-  border-radius: 1.5rem;
+  background-color: #edf2ff;
 }
