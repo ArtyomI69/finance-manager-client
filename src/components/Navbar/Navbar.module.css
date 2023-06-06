@@ -22,7 +22,6 @@
 .nav-list li {
   cursor: pointer;
   width: 100%;
-  padding: 1.6rem 1rem;
 }
 
 .nav-list li:hover {
@@ -31,6 +30,13 @@
 
 .nav-list li:last-child {
   margin-top: auto;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #555;
+  display: block;
+  padding: 1.6rem 1rem;
 }
 
 /**************************/

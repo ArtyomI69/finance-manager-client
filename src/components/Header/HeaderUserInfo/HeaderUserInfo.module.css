@@ -15,6 +15,7 @@
 
 .user-avatar img {
   max-height: 8.6rem;
+  border-radius: 50%;
 }
 
 .user-name {

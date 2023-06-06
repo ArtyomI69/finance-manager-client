@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -15,20 +16,28 @@ const Navbar: FC = () => {
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
         <li>
-          <FontAwesomeIcon icon={faUser} />
-          <span>Мой профиль</span>
+          <NavLink to="/profile">
+            <FontAwesomeIcon icon={faUser} />
+            <span>Мой профиль</span>
+          </NavLink>
         </li>
         <li>
-          <FontAwesomeIcon icon={faChartLine} />
-          <span>Транзакции</span>
+          <NavLink to="/">
+            <FontAwesomeIcon icon={faChartLine} />
+            <span>Транзакции</span>
+          </NavLink>
         </li>
         <li>
-          <FontAwesomeIcon icon={faMoneyBillTrendUp} />
-          <span>Доходы</span>
+          <NavLink to="/incomes">
+            <FontAwesomeIcon icon={faMoneyBillTrendUp} />
+            <span>Доходы</span>
+          </NavLink>
         </li>
         <li>
-          <FontAwesomeIcon icon={faMoneyBillTransfer} />
-          <span>Расходы</span>
+          <NavLink to="/expenses">
+            <FontAwesomeIcon icon={faMoneyBillTransfer} />
+            <span>Расходы</span>
+          </NavLink>
         </li>
         <li>
           <FontAwesomeIcon icon={faRightFromBracket} />
