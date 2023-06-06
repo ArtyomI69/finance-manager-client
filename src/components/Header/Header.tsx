@@ -4,6 +4,7 @@ import styles from "./Header.module.css";
 import HeaderUserInfo from "./HeaderUserInfo/HeaderUserInfo";
 import Navbar from "../Navbar/Navbar";
 import MobileNavbar from "./MobileNavbar/MobileNavbar";
+import CloseNavbarButton from "./CloseNavbarButton/CloseNavbarButton";
 
 const Header: FC = () => {
   const [isHeaderOpen, setIsHeaderOpen] = useState(false);
@@ -21,6 +22,7 @@ const Header: FC = () => {
       <HeaderUserInfo />
       <Navbar />
       <MobileNavbar toggleMobileNavbar={toggleMobileNavbar} isHeaderOpen={isHeaderOpen} />
+      <CloseNavbarButton toggleMobileNavbar={toggleMobileNavbar} isHeaderOpen={isHeaderOpen} />
     </header>
   );
 };

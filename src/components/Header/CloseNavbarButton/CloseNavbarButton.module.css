@@ -1,0 +1,32 @@
+.close-navbar-button {
+  display: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  right: 32px;
+  top: 12px;
+  background-color: #fff;
+  padding: 8px 24px;
+}
+
+.close-navbar-button svg {
+  font-size: 36px;
+}
+
+/**************************/
+/* Ниже 928  */
+/**************************/
+
+@media (max-width: 58em) {
+  html {
+    font-size: 43.75%;
+  }
+
+  .close-navbar-button {
+    display: block;
+  }
+
+  .close-navbar-button--closed {
+    display: none;
+  }
+}
