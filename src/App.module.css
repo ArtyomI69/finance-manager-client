@@ -7,3 +7,14 @@
   height: 100vh;
   background-color: #edf2ff;
 }
+
+/**************************/
+/* Ниже 928  */
+/**************************/
+
+@media (max-width: 58em) {
+  .app {
+    padding: 0rem;
+    gap: 0rem;
+  }
+}

@@ -1,0 +1,41 @@
+.mobile-navbar {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 64px;
+  background-color: white;
+  top: 0;
+  left: 0;
+}
+
+.mobile-navbar button {
+  border: none;
+  cursor: pointer;
+  position: relative;
+  left: 32px;
+  top: 4px;
+  background-color: #fff;
+  padding: 8px 24px;
+}
+
+.mobile-navbar svg {
+  font-size: 44px;
+}
+
+/**************************/
+/* Ниже 928  */
+/**************************/
+
+@media (max-width: 58em) {
+  html {
+    font-size: 43.75%;
+  }
+
+  .mobile-navbar {
+    display: block;
+  }
+
+  .mobile-navbar--closed {
+    display: none;
+  }
+}

@@ -4,4 +4,17 @@
   border-radius: 1.5rem;
   box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  padding: 2.4rem;
+}
+
+/**************************/
+/* Ниже 928  */
+/**************************/
+
+@media (max-width: 58em) {
+  .main {
+    border-radius: 0;
+    width: 100%;
+    padding-top: 88px;
+  }
 }

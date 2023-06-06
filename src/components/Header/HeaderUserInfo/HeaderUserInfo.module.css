@@ -36,3 +36,22 @@
   font-weight: 700;
   color: #000;
 }
+
+/**************************/
+/* Ниже 1072  */
+/**************************/
+
+@media (max-width: 67em) {
+  .header-user-info {
+    grid-template-columns: auto;
+  }
+  .user-name {
+    align-self: center;
+    justify-self: center;
+  }
+
+  .user-balance {
+    align-self: center;
+    justify-self: center;
+  }
+}
