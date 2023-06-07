@@ -11,30 +11,50 @@ import {
 
 import styles from "./Navbar.module.css";
 
-const Navbar: FC = () => {
+interface NavbarProps {
+  closeMobileNavBar: () => void;
+}
+
+const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
   return (
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
         <li>
-          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/">
+          <NavLink
+            onClick={closeMobileNavBar}
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/"
+          >
             <FontAwesomeIcon icon={faChartLine} />
             <span>Транзакции</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/profile">
+          <NavLink
+            onClick={closeMobileNavBar}
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/profile"
+          >
             <FontAwesomeIcon icon={faUser} />
             <span>Мой профиль</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/incomes">
+          <NavLink
+            onClick={closeMobileNavBar}
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/incomes"
+          >
             <FontAwesomeIcon icon={faMoneyBillTrendUp} />
             <span>Доходы</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/expenses">
+          <NavLink
+            onClick={closeMobileNavBar}
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/expenses"
+          >
             <FontAwesomeIcon icon={faMoneyBillTransfer} />
             <span>Расходы</span>
           </NavLink>

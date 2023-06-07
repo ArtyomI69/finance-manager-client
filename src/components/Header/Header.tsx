@@ -9,8 +9,12 @@ import CloseNavbarButton from "./CloseNavbarButton/CloseNavbarButton";
 const Header: FC = () => {
   const [isHeaderOpen, setIsHeaderOpen] = useState(false);
 
-  const toggleMobileNavbar = () => {
-    setIsHeaderOpen((prevIsHeaderOpen) => !prevIsHeaderOpen);
+  const openMobileNavBar = () => {
+    setIsHeaderOpen(true);
+  };
+
+  const closeMobileNavBar = () => {
+    setIsHeaderOpen(false);
   };
 
   const className = isHeaderOpen
@@ -20,9 +24,9 @@ const Header: FC = () => {
   return (
     <header className={className}>
       <HeaderUserInfo />
-      <Navbar />
-      <MobileNavbar toggleMobileNavbar={toggleMobileNavbar} isHeaderOpen={isHeaderOpen} />
-      <CloseNavbarButton toggleMobileNavbar={toggleMobileNavbar} isHeaderOpen={isHeaderOpen} />
+      <Navbar closeMobileNavBar={closeMobileNavBar} />
+      <MobileNavbar openMobileNavBar={openMobileNavBar} isHeaderOpen={isHeaderOpen} />
+      <CloseNavbarButton closeMobileNavBar={closeMobileNavBar} isHeaderOpen={isHeaderOpen} />
     </header>
   );
 };

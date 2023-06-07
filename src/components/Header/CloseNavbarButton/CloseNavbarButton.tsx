@@ -6,16 +6,16 @@ import styles from "./CloseNavbarButton.module.css";
 
 interface CloseNavbarButtonProps {
   isHeaderOpen: boolean;
-  toggleMobileNavbar: () => void;
+  closeMobileNavBar: () => void;
 }
 
-const CloseNavbarButton: FC<CloseNavbarButtonProps> = ({ isHeaderOpen, toggleMobileNavbar }) => {
+const CloseNavbarButton: FC<CloseNavbarButtonProps> = ({ isHeaderOpen, closeMobileNavBar }) => {
   const className = isHeaderOpen
     ? styles["close-navbar-button"]
     : [styles["close-navbar-button"], styles["close-navbar-button--closed"]].join(" ");
 
   return (
-    <button className={className} onClick={toggleMobileNavbar}>
+    <button className={className} onClick={closeMobileNavBar}>
       <FontAwesomeIcon icon={faX} />
     </button>
   );
