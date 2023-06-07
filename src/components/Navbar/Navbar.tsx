@@ -16,25 +16,25 @@ const Navbar: FC = () => {
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
         <li>
-          <NavLink to="/profile">
+          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/profile">
             <FontAwesomeIcon icon={faUser} />
             <span>Мой профиль</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/">
             <FontAwesomeIcon icon={faChartLine} />
             <span>Транзакции</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/incomes">
+          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/incomes">
             <FontAwesomeIcon icon={faMoneyBillTrendUp} />
             <span>Доходы</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/expenses">
+          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/expenses">
             <FontAwesomeIcon icon={faMoneyBillTransfer} />
             <span>Расходы</span>
           </NavLink>
