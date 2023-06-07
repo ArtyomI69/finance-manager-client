@@ -16,15 +16,15 @@ const Navbar: FC = () => {
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
         <li>
-          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/profile">
-            <FontAwesomeIcon icon={faUser} />
-            <span>Мой профиль</span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/">
             <FontAwesomeIcon icon={faChartLine} />
             <span>Транзакции</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to="/profile">
+            <FontAwesomeIcon icon={faUser} />
+            <span>Мой профиль</span>
           </NavLink>
         </li>
         <li>
