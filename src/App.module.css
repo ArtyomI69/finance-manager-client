@@ -1,7 +1,7 @@
 .app {
   padding: 3.2rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   align-items: center;
   gap: 3.6rem;
   height: 100vh;
@@ -16,5 +16,6 @@
   .app {
     padding: 0rem;
     gap: 0rem;
+    grid-template-columns: 0% 100%;
   }
 }
