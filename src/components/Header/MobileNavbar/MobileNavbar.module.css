@@ -23,14 +23,10 @@
 }
 
 /**************************/
-/* Ниже 928  */
+/* Ниже 1072px  */
 /**************************/
 
-@media (max-width: 58em) {
-  html {
-    font-size: 43.75%;
-  }
-
+@media (max-width: 67em) {
   .mobile-navbar {
     display: block;
   }

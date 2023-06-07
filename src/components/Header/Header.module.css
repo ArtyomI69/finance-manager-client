@@ -10,10 +10,10 @@
 }
 
 /**************************/
-/* Ниже 928  */
+/* Ниже 1072px  */
 /**************************/
 
-@media (max-width: 58em) {
+@media (max-width: 67em) {
   .header {
     width: 0%;
     border-radius: 0;

@@ -39,29 +39,32 @@
 }
 
 /**************************/
-/* Ниже 1072  */
+/* Ниже 1264px  */
 /**************************/
 
-@media (max-width: 67em) {
+@media (max-width: 79em) {
   .header-user-info {
     grid-template-columns: auto;
   }
+
   .user-name {
     align-self: center;
     justify-self: center;
+    font-size: 2rem;
   }
 
   .user-balance {
     align-self: center;
     justify-self: center;
+    font-size: 1.8rem;
   }
 }
 
 /**************************/
-/* Ниже 928  */
+/* Ниже 1072px  */
 /**************************/
 
-@media (max-width: 58em) {
+@media (max-width: 67em) {
   .user-avatar img {
     max-height: 9.8rem;
   }
