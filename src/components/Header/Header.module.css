@@ -2,7 +2,7 @@
   height: 100%;
   display: flex;
   flex-flow: column;
-  border-radius: 1.5rem;
+  border-radius: 15px;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.1);
   background-color: #fff;
   padding: 2.4rem;

@@ -1,0 +1,7 @@
+.month-picker {
+  display: flex;
+}
+
+.month-picker input {
+  outline: none;
+}

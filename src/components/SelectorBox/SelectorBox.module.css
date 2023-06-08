@@ -1,2 +1,7 @@
 .selector-box {
+  display: flex;
+}
+
+.selector-box select {
+  outline: none;
 }

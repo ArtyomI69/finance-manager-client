@@ -2,17 +2,25 @@ import { FC } from "react";
 
 import styles from "./SelectorBox.module.css";
 
-const SelectorBox: FC = () => {
+interface Option {
+  text: string;
+  value: string;
+}
+
+interface SelectorBoxProps {
+  options: Option[];
+}
+
+const SelectorBox: FC<SelectorBoxProps> = ({ options }) => {
   return (
-    <div>
+    <div className={styles["selector-box"]}>
       <label htmlFor="chart-type">Тип диаграммы</label>
-      <select
-        id="chart-type"
-        onChange={(e: any) => console.log(e.target.value)}
-        className={styles["selector-box"]}
-      >
-        <option value="Гистограмма">Гистограмма</option>
-        <option value="Круговая диаграмма">Круговая диаграмма</option>
+      <select id="chart-type">
+        {options.map((option, idx) => (
+          <option key={idx.toString()} value={option.value}>
+            {option.text}
+          </option>
+        ))}
       </select>
     </div>
   );
