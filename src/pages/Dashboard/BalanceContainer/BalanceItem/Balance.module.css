@@ -1,0 +1,26 @@
+.balance-item {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 60%;
+  height: 80%;
+  background-color: #fff;
+}
+
+.balance-item:last-child {
+  grid-column: 1 / -1;
+  width: 30%;
+}
+
+.text {
+  font-size: 1.8rem;
+}
+
+.value {
+  font-size: 3.6em;
+}

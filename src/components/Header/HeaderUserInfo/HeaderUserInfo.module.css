@@ -1,11 +1,10 @@
 .header-user-info {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  row-gap: 2.4rem;
+  flex-direction: column;
   margin-bottom: 4.8rem;
+  gap: 1.6rem;
 }
 
 .user-avatar {
@@ -19,17 +18,13 @@
 }
 
 .user-name {
-  align-self: self-end;
-  justify-self: start;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #000;
 }
 
 .user-balance {
-  align-self: self-start;
-  justify-self: start;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
@@ -45,18 +40,6 @@
 @media (max-width: 79em) {
   .header-user-info {
     grid-template-columns: auto;
-  }
-
-  .user-name {
-    align-self: center;
-    justify-self: center;
-    font-size: 2rem;
-  }
-
-  .user-balance {
-    align-self: center;
-    justify-self: center;
-    font-size: 1.8rem;
   }
 }
 

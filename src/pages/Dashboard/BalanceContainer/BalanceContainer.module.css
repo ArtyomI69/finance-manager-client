@@ -1,0 +1,9 @@
+.balance-container {
+  height: 35%;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}

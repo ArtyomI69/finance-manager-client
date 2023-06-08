@@ -23,9 +23,9 @@ const Header: FC = () => {
 
   return (
     <header className={className}>
+      <MobileNavbar openMobileNavBar={openMobileNavBar} isHeaderOpen={isHeaderOpen} />
       <HeaderUserInfo />
       <Navbar closeMobileNavBar={closeMobileNavBar} />
-      <MobileNavbar openMobileNavBar={openMobileNavBar} isHeaderOpen={isHeaderOpen} />
       <CloseNavbarButton closeMobileNavBar={closeMobileNavBar} isHeaderOpen={isHeaderOpen} />
     </header>
   );

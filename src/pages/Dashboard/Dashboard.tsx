@@ -1,12 +1,16 @@
 import { FC } from "react";
 
 import styles from "./Dashboard.module.css";
-import PageTitle from "../../components/PageTitle/PageTitle";
+import ChartForm from "./ChartForm/ChartForm";
+import Chart from "./Chart/Chart";
+import BalanceContainer from "./BalanceContainer/BalanceContainer";
 
 const Dashboard: FC = () => {
   return (
     <div className={styles.dashboard}>
-      <PageTitle />
+      <ChartForm />
+      <Chart />
+      <BalanceContainer />
     </div>
   );
 };

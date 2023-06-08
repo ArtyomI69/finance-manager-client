@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
   faUser,
@@ -10,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navbar.module.css";
+import NavItem from "./NavItem/NavItem";
 
 interface NavbarProps {
   closeMobileNavBar: () => void;
@@ -19,50 +18,36 @@ const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
   return (
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
-        <li>
-          <NavLink
-            onClick={closeMobileNavBar}
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            to="/"
-          >
-            <FontAwesomeIcon icon={faChartLine} />
-            <span>Транзакции</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            onClick={closeMobileNavBar}
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            to="/profile"
-          >
-            <FontAwesomeIcon icon={faUser} />
-            <span>Мой профиль</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            onClick={closeMobileNavBar}
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            to="/incomes"
-          >
-            <FontAwesomeIcon icon={faMoneyBillTrendUp} />
-            <span>Доходы</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            onClick={closeMobileNavBar}
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            to="/expenses"
-          >
-            <FontAwesomeIcon icon={faMoneyBillTransfer} />
-            <span>Расходы</span>
-          </NavLink>
-        </li>
-        <li>
-          <FontAwesomeIcon icon={faRightFromBracket} />
-          <span>Выйти</span>
-        </li>
+        <NavItem
+          text="Транзакции"
+          to="/"
+          icon={faChartLine}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
+          text="Мой профиль"
+          to="/profile"
+          icon={faUser}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
+          text="Доходы"
+          to="/incomes"
+          icon={faMoneyBillTrendUp}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
+          text="Расходы"
+          to="/expenses"
+          icon={faMoneyBillTransfer}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
+          text="Выйти"
+          to="/exit"
+          icon={faRightFromBracket}
+          closeMobileNavBar={closeMobileNavBar}
+        />
       </ul>
     </nav>
   );
