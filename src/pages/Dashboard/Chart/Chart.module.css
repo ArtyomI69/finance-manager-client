@@ -1,6 +1,8 @@
 .chart {
   padding: 1.6em 3.2rem;
   height: 55%;
+  width: 90%;
+  align-self: center;
   border-radius: 1.5rem;
   box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
