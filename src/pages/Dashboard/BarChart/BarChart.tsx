@@ -26,7 +26,19 @@ const data: ChartData<"bar"> = {
 };
 
 const BarChart: FC = () => {
-  return <Bar data={data} options={{ maintainAspectRatio: false }} />;
+  return (
+    <Bar
+      data={data}
+      options={{
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: { color: "#000", font: { size: 18 } },
+          },
+        },
+      }}
+    />
+  );
 };
 
 export default BarChart;

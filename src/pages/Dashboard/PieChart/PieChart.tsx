@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 ChartJS.defaults.font.family = "Rubik, sans-serif, 'FontAwesome'";
 
 const data: ChartData<"pie"> = {
-  labels: ["Продукты", "Онлайн покупки", "\uf1b9 Машина"],
+  labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
   datasets: [
     {
       data: [3, 6, 9],
@@ -31,7 +31,7 @@ const PieChart: FC = () => {
             formatter: (value, ctx) => {
               const datapoints = ctx.chart.data.datasets[0].data;
               const total = datapoints.reduce(
-                (prev, datapoint) => (prev += datapoint!),
+                (prev, datapoint) => ((prev as number) += datapoint as number),
                 0
               ) as number;
               const percentage = (value / total) * 100;
