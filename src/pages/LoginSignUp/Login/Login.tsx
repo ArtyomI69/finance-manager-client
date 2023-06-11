@@ -1,21 +1,26 @@
 import { FC } from "react";
 
+import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
+
 const Login: FC = () => {
   return (
-    <form>
-      <h1>Логин</h1>
-      <div>
+    <>
+      <LoginSignUpNavbar />
+      <form>
+        <h1>Логин</h1>
         <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" />
+          <div>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" />
+          </div>
+          <div>
+            <label htmlFor="password">Пароль</label>
+            <input type="password" id="password" />
+          </div>
         </div>
-        <div>
-          <label htmlFor="password">Пароль</label>
-          <input type="password" id="password" />
-        </div>
-      </div>
-      <button>Войти</button>
-    </form>
+        <button>Войти</button>
+      </form>
+    </>
   );
 };
 
