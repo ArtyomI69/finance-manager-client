@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import styles from "./LoginSignUp.module.css";
 import Login from "./Login/Login";
@@ -11,6 +11,7 @@ const LoginSignUp: FC = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/*" element={<Navigate to={"/login"} />} />
       </Routes>
     </div>
   );
