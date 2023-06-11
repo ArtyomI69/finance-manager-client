@@ -26,7 +26,11 @@ const ChartForm: FC = () => {
 
   return (
     <form className={styles["chart-form"]}>
-      <SelectorBox options={selectorBoxOptions} onChange={selectorBoxChangeHandler} />
+      <SelectorBox
+        title="Тип диограммы"
+        options={selectorBoxOptions}
+        onChange={selectorBoxChangeHandler}
+      />
       <MonthPicker />
     </form>
   );

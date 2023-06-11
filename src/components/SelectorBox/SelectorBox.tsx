@@ -8,14 +8,15 @@ interface Option {
 }
 
 interface SelectorBoxProps {
+  title: string;
   options: Option[];
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectorBox: FC<SelectorBoxProps> = ({ options, onChange }) => {
+const SelectorBox: FC<SelectorBoxProps> = ({ title, options, onChange }) => {
   return (
     <div className={styles["selector-box"]}>
-      <label htmlFor="chart-type">Тип диаграммы</label>
+      <label htmlFor="chart-type">{title}</label>
       <select id="chart-type" onChange={onChange}>
         {options.map((option, idx) => (
           <option key={idx.toString()} value={option.value}>
