@@ -1,0 +1,45 @@
+.login-sign-up-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.login-sign-up-navbar li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  font-size: 2rem;
+}
+
+.login-sign-up-navbar li a {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  color: #555;
+  background-color: #edf2ff;
+  width: 100%;
+}
+
+.login-sign-up-navbar li:first-child a {
+  border-top-left-radius: 15px;
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.login-sign-up-navbar li:last-child a {
+  border-top-right-radius: 15px;
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.login-sign-up-navbar li a.active {
+  background-color: #fff;
+  color: #000;
+}
