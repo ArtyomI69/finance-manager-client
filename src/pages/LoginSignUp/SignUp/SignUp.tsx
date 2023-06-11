@@ -1,10 +1,12 @@
-import { ChangeEvent, FC, useState } from "react";
+import { FC } from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
+import { IRegistration } from "../../../models/IRegistration";
+import { Gender } from "../../../models/Gender";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
-import TextError from "../TextError/TextError";
-import SelectorBox from "../../../components/SelectorBox/SelectorBox";
-
-type Gender = "man" | "woman";
+import InputField from "../../../components/InputField/InputField";
+import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
 
 interface IBoxOption {
   text: string;
@@ -17,46 +19,34 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const SignUp: FC = () => {
-  const [gender, setGender] = useState<Gender>("man");
+  const initialValues: IRegistration = {
+    email: "",
+    userName: "",
+    gender: "man",
+    password: "",
+    confirmPassword: "",
+  };
 
-  const selectorBoxChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setGender(e.target.value as Gender);
+  const onSubmit = (values: IRegistration) => {
+    console.log(values);
   };
 
   return (
     <>
       <LoginSignUpNavbar />
-      <form>
-        <h1>Регистрация</h1>
-        <div>
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Form>
+          <h1>Регистрация</h1>
           <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" />
-            <TextError>dasdads</TextError>
+            <InputField label="Email" type="email" name="email" />
+            <InputField label="Имя" type="text" name="userName" />
+            <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
+            <InputField label="Пароль" type="password" name="password" />
+            <InputField label="Потвердите пароль" type="password" name="confirmPassword" />
           </div>
-          <div>
-            <label htmlFor="email">Имя</label>
-            <input type="text" id="email" />
-            <TextError>dasdads</TextError>
-          </div>
-          <SelectorBox
-            title="Пол"
-            options={selectorBoxOptions}
-            onChange={selectorBoxChangeHandler}
-          />
-          <div>
-            <label htmlFor="password">Пароль</label>
-            <input type="password" id="password" />
-            <TextError>dasdads</TextError>
-          </div>
-          <div>
-            <label htmlFor="password-repeat">Повторите пароль</label>
-            <input type="password" id="password-repeat" />
-            <TextError>dasdads</TextError>
-          </div>
-        </div>
-        <button>Зарегистрироваться</button>
-      </form>
+          <button>Зарегистрироваться</button>
+        </Form>
+      </Formik>
     </>
   );
 };

@@ -8,9 +8,9 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 const App: FC = () => {
   return (
     <div className={styles.app}>
-      <LoginSignUp />
-      {/* <Header />
-      <Main /> */}
+      {/* <LoginSignUp /> */}
+      <Header />
+      <Main />
     </div>
   );
 };

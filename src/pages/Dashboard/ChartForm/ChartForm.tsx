@@ -27,7 +27,8 @@ const ChartForm: FC = () => {
   return (
     <form className={styles["chart-form"]}>
       <SelectorBox
-        title="Тип диограммы"
+        label="Тип диограммы"
+        name="chart-type"
         options={selectorBoxOptions}
         onChange={selectorBoxChangeHandler}
       />
