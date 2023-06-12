@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
-import * as Yup from "yup";
+import { string, object, ObjectSchema } from "yup";
 
 import { ILogin } from "../../../models/ILogin";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
@@ -12,11 +12,11 @@ const Login: FC = () => {
     password: "",
   };
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
+  const validationSchema: ObjectSchema<ILogin> = object({
+    email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
-    password: Yup.string().required("Необходимо заполнить данное поле"),
+    password: string().required("Необходимо заполнить данное поле"),
   });
 
   const onSubmit = (values: ILogin, onSubmitProps: FormikHelpers<ILogin>) => {

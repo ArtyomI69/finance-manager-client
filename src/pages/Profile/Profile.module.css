@@ -1,2 +1,64 @@
 .profile {
+  max-height: 100%;
+  overflow: auto;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.profile form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 3.2rem;
+  background-color: #fff;
+}
+
+.profile h1 {
+  font-size: 2.4rem;
+  color: #000;
+  font-weight: 700;
+}
+
+.profile form div {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.profile form div div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.profile form label {
+  font-size: 1.8rem;
+}
+
+.profile form input,
+.profile form select {
+  outline: none;
+  font-size: 1.6rem;
+  color: #000;
+  border-radius: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.8rem;
+}
+
+.profile form button {
+  cursor: pointer;
+  outline: none;
+  border-radius: 9px;
+  padding: 0.8rem 1.6rem;
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: #edf2ff;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.profile button:hover {
+  background-color: #dbe4ff;
 }

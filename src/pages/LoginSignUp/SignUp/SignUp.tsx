@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
-import * as Yup from "yup";
+import { object, string, ref, ObjectSchema } from "yup";
 
 import { IRegistration } from "../../../models/IRegistration";
 import { Gender } from "../../../models/Gender";
@@ -27,14 +27,15 @@ const SignUp: FC = () => {
     confirmPassword: "",
   };
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
+  const validationSchema: ObjectSchema<IRegistration> = object({
+    email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
-    userName: Yup.string().required("Необходимо заполнить данное поле"),
-    password: Yup.string().required("Необходимо заполнить данное поле"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Пароли должны совпадать")
+    userName: string().required("Необходимо заполнить данное поле"),
+    gender: string<Gender>().required(),
+    password: string().required("Необходимо заполнить данное поле"),
+    confirmPassword: string()
+      .oneOf([ref("password")], "Пароли должны совпадать")
       .required("Необходимо заполнить данное поле"),
   });
 

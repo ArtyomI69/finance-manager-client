@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Field, ErrorMessage } from "formik";
 
-import TextError from "../../pages/LoginSignUp/TextError/TextError";
+import TextError from "../TextError/TextError";
 
 interface InputFieldProps {
   label: string;
