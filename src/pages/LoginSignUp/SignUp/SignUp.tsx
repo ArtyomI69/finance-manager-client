@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 import { IRegistration } from "../../../models/IRegistration";
@@ -27,25 +27,44 @@ const SignUp: FC = () => {
     confirmPassword: "",
   };
 
-  const onSubmit = (values: IRegistration) => {
-    console.log(values);
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Введите email в правильном формате")
+      .required("Необходимо заполнить данное поле"),
+    userName: Yup.string().required("Необходимо заполнить данное поле"),
+    password: Yup.string().required("Необходимо заполнить данное поле"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Пароли должны совпадать")
+      .required("Необходимо заполнить данное поле"),
+  });
+
+  const onSubmit = (values: IRegistration, onSubmitProps: FormikHelpers<IRegistration>) => {
+    onSubmitProps.setSubmitting(true);
+    setTimeout(() => {
+      onSubmitProps.setSubmitting(false);
+      console.log(values);
+    }, 3000);
   };
 
   return (
     <>
       <LoginSignUpNavbar />
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        <Form>
-          <h1>Регистрация</h1>
-          <div>
-            <InputField label="Email" type="email" name="email" />
-            <InputField label="Имя" type="text" name="userName" />
-            <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
-            <InputField label="Пароль" type="password" name="password" />
-            <InputField label="Потвердите пароль" type="password" name="confirmPassword" />
-          </div>
-          <button>Зарегистрироваться</button>
-        </Form>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {(formik) => (
+          <Form>
+            <h1>Регистрация</h1>
+            <div>
+              <InputField label="Email" type="email" name="email" />
+              <InputField label="Имя" type="text" name="userName" />
+              <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
+              <InputField label="Пароль" type="password" name="password" />
+              <InputField label="Потвердите пароль" type="password" name="confirmPassword" />
+            </div>
+            <button disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}>
+              Зарегистрироваться
+            </button>
+          </Form>
+        )}
       </Formik>
     </>
   );
