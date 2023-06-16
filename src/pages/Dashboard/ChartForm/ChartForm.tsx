@@ -2,7 +2,7 @@ import { FC, ChangeEvent } from "react";
 
 import styles from "./ChartForm.module.css";
 import { ChartType } from "../../../models/ChartType";
-import { useAppDispatch } from "../../../hooks/redux";
+import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
 import { dashboardSlice } from "../../../store/reducers/DashboardSlice";
 import SelectorBox from "../../../components/SelectorBox/SelectorBox";
 import MonthPicker from "../MonthPicker/MonthPicker";
@@ -18,6 +18,7 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const ChartForm: FC = () => {
+  const { chartType } = useAppSelector((state) => state.dashboardReducer);
   const dispatch = useAppDispatch();
 
   const selectorBoxChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -30,6 +31,7 @@ const ChartForm: FC = () => {
         label="Тип диограммы"
         name="chart-type"
         options={selectorBoxOptions}
+        selectedValue={chartType}
         onChange={selectorBoxChangeHandler}
       />
       <MonthPicker />
