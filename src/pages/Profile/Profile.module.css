@@ -6,6 +6,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: start;
 }
 
 .profile form {
@@ -21,6 +22,10 @@
   font-size: 2.4rem;
   color: #000;
   font-weight: 700;
+}
+
+.profile form div {
+  display: flex;
 }
 
 .profile form div {
@@ -44,6 +49,7 @@
   outline: none;
   font-size: 1.6rem;
   color: #000;
+  font-weight: 600;
   border-radius: 9px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0.4rem 0.8rem;
