@@ -3,10 +3,12 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ref, ObjectSchema } from "yup";
 
 import styles from "./Profile.module.css";
+import { profileAPI } from "../../services/ProfileService";
 import { IProfile } from "../../models/IProfile";
 import { Gender } from "../../models/Gender";
 import InputField from "../../components/InputField/InputField";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 interface IBoxOption {
   text: string;
@@ -19,6 +21,8 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const Profile: FC = () => {
+  const { isLoading } = profileAPI.useFetchProfileQuery();
+
   const initialValues: IProfile = {
     userName: "Евгений Петров",
     gender: "man",
@@ -46,6 +50,8 @@ const Profile: FC = () => {
       console.log(values);
     }, 3000);
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <>

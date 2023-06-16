@@ -1,17 +1,20 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import dashboardReducer from "./reducers/DashboardSlice";
-import { dashboardApi } from "../services/DashboardService";
+import { dashboardAPI } from "../services/DashboardService";
+import { profileAPI } from "../services/ProfileService";
 
 const rootReducer = combineReducers({
   dashboardReducer,
-  [dashboardApi.reducerPath]: dashboardApi.reducer,
+  [dashboardAPI.reducerPath]: dashboardAPI.reducer,
+  [profileAPI.reducerPath]: profileAPI.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(dashboardApi.middleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(dashboardAPI.middleware, profileAPI.middleware),
   });
 };
 
