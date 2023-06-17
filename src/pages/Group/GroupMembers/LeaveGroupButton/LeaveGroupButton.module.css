@@ -1,0 +1,13 @@
+.leave-group-button {
+  outline: none;
+  font-size: 2rem;
+  color: #000;
+  border-radius: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.8rem;
+  width: 50%;
+  background-color: #e03131;
+  color: #fff;
+  cursor: pointer;
+  margin-top: auto;
+}

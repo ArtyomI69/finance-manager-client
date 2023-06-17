@@ -18,6 +18,7 @@ const Main: FC = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/group" element={<Group />}>
+          <Route path="" element={<GroupMembers />} />
           <Route path="members" element={<GroupMembers />} />
           <Route path="invitations" element={<div>INVITATIONS 32131231</div>} />
         </Route>

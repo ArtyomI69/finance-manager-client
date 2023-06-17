@@ -16,6 +16,7 @@ const PageTitle: FC = () => {
       title = "Мой профиль";
       break;
     }
+    case "/group":
     case "/group/invitations":
     case "/group/members": {
       title = "Группа";

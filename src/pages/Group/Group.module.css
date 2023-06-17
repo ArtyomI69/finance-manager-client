@@ -1,7 +1,8 @@
 .group {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   gap: 2.4rem;
+  height: 100%;
 }
