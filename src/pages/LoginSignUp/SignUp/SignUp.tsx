@@ -3,14 +3,14 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 
 import { IRegistration } from "../../../models/IRegistration";
-import { Gender } from "../../../models/Gender";
+import { Sex } from "../../../models/Sex";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
 import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
 
 interface IBoxOption {
   text: string;
-  value: Gender;
+  value: Sex;
 }
 
 const selectorBoxOptions: IBoxOption[] = [
@@ -32,7 +32,7 @@ const SignUp: FC = () => {
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
     userName: string().required("Необходимо заполнить данное поле"),
-    gender: string<Gender>().required(),
+    gender: string<Sex>().required(),
     password: string().required("Необходимо заполнить данное поле"),
     confirmPassword: string()
       .oneOf([ref("password")], "Пароли должны совпадать")

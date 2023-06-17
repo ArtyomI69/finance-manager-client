@@ -1,0 +1,28 @@
+.invitation-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.invitation-input input,
+.invitation-input button {
+  outline: none;
+  font-size: 2rem;
+  color: #000;
+  border-radius: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.8rem;
+}
+
+.invitation-input input {
+  width: 50%;
+}
+
+.invitation-input button {
+  cursor: pointer;
+  background-color: #69db7c;
+  color: #fff;
+  font-weight: bold;
+}

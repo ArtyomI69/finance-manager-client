@@ -1,0 +1,54 @@
+.member {
+  font-size: 2rem;
+  width: 90%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 4.8rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 9px;
+}
+
+.member img {
+  max-width: 5%;
+}
+
+.name,
+.balance span {
+  color: #000;
+}
+
+.balance {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.buttons {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.buttons button {
+  outline: none;
+  font-size: 2rem;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.buttons button:hover {
+  background-color: #f1f3f5;
+}
+
+.make-leader-group-button {
+  color: #ffd43b;
+}
+
+.remove-user-from-group-button {
+  color: #e03131;
+}
