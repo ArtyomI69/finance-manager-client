@@ -16,6 +16,10 @@ const PageTitle: FC = () => {
       title = "Мой профиль";
       break;
     }
+    case "/group": {
+      title = "Группа";
+      break;
+    }
     case "/incomes": {
       title = "Доходы";
       break;

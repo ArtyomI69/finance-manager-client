@@ -1,0 +1,10 @@
+.user-id {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.user-id span {
+  font-weight: 700;
+  color: #000;
+}

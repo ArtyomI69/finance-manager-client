@@ -6,7 +6,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .profile form {
@@ -16,16 +17,6 @@
   gap: 2.4rem;
   padding: 3.2rem;
   background-color: #fff;
-}
-
-.profile h1 {
-  font-size: 2.4rem;
-  color: #000;
-  font-weight: 700;
-}
-
-.profile form div {
-  display: flex;
 }
 
 .profile form div {

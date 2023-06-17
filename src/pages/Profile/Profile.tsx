@@ -6,6 +6,7 @@ import styles from "./Profile.module.css";
 import { profileAPI } from "../../services/ProfileService";
 import { IProfile } from "../../models/IProfile";
 import { Gender } from "../../models/Gender";
+import UserId from "../../components/UserId/UserId";
 import InputField from "../../components/InputField/InputField";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -56,6 +57,7 @@ const Profile: FC = () => {
   return (
     <>
       <div className={styles.profile}>
+        <UserId />
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

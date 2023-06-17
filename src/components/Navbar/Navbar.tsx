@@ -5,6 +5,7 @@ import {
   faMoneyBillTrendUp,
   faMoneyBillTransfer,
   faRightFromBracket,
+  faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navbar.module.css";
@@ -28,6 +29,12 @@ const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
           text="Мой профиль"
           to="/profile"
           icon={faUser}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
+          text="Группа"
+          to="/group"
+          icon={faUserGroup}
           closeMobileNavBar={closeMobileNavBar}
         />
         <NavItem
