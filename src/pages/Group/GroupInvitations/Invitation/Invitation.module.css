@@ -1,4 +1,4 @@
-.member {
+.invitation {
   font-size: 2rem;
   width: 90%;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -10,18 +10,12 @@
   border-radius: 9px;
 }
 
-.member img {
+.invitation img {
   max-width: 4.8rem;
 }
 
-.name,
-.balance span {
+.name span {
   color: #000;
-}
-
-.balance {
-  display: flex;
-  gap: 0.8rem;
 }
 
 .buttons {
@@ -45,10 +39,10 @@
   background-color: #f1f3f5;
 }
 
-.make-group-leader-button {
-  color: #ffd43b;
+.accept-button {
+  color: green;
 }
 
-.remove-user-from-group-button {
+.decline-button {
   color: red;
 }

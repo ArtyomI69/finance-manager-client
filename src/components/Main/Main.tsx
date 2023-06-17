@@ -6,6 +6,7 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import Profile from "../../pages/Profile/Profile";
 import Group from "../../pages/Group/Group";
 import GroupMembers from "../../pages/Group/GroupMembers/GroupMembers";
+import GroupInvitations from "../../pages/Group/GroupInvitations/GroupInvitations";
 import Incomes from "../../pages/Incomes/Incomes";
 import Expenses from "../../pages/Expenses/Expenses";
 import PageTitle from "../PageTitle/PageTitle";
@@ -20,7 +21,7 @@ const Main: FC = () => {
         <Route path="/group" element={<Group />}>
           <Route path="" element={<GroupMembers />} />
           <Route path="members" element={<GroupMembers />} />
-          <Route path="invitations" element={<div>INVITATIONS 32131231</div>} />
+          <Route path="invitations" element={<GroupInvitations />} />
         </Route>
         <Route path="/incomes" element={<Incomes />} />
         <Route path="/expenses" element={<Expenses />} />

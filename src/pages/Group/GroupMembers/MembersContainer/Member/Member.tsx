@@ -19,7 +19,7 @@ const Member: FC<MemberProps> = ({ isGroupLeader }) => {
       </p>
       {isGroupLeader && (
         <div className={styles.buttons}>
-          <button className={styles["make-leader-group-button"]}>
+          <button className={styles["make-group-leader-button"]}>
             <FontAwesomeIcon icon={faCrown} />
           </button>
           <button className={styles["remove-user-from-group-button"]}>
