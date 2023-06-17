@@ -16,7 +16,8 @@ const PageTitle: FC = () => {
       title = "Мой профиль";
       break;
     }
-    case "/group": {
+    case "/group/invitations":
+    case "/group/members": {
       title = "Группа";
       break;
     }
@@ -28,6 +29,8 @@ const PageTitle: FC = () => {
       title = "Расходы";
       break;
     }
+    default:
+      title = "Название страницы не указано";
   }
 
   return <h1 className={styles.title}>{title}</h1>;

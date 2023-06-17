@@ -1,0 +1,27 @@
+.group-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-navbar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.group-navbar ul li a {
+  display: inline-block;
+  padding: 2.4rem 4.8rem;
+  font-size: 1.6rem;
+  color: #555;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline !important;
+  color: #000 !important;
+}

@@ -16,7 +16,10 @@ const Main: FC = () => {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/group" element={<Group />} />
+        <Route path="/group" element={<Group />}>
+          <Route path="members" element={<div>MEMBERS111</div>} />
+          <Route path="invitations" element={<div>INVITATIONS 32131231</div>} />
+        </Route>
         <Route path="/incomes" element={<Incomes />} />
         <Route path="/expenses" element={<Expenses />} />
         <Route path="*" element={<Navigate to={"/"} />} />
