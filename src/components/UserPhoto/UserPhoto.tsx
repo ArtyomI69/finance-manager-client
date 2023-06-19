@@ -1,18 +1,18 @@
 import { FC } from "react";
 
 import styles from "./UserPhoto.module.css";
-import { Sex } from "../../models/Sex";
+import { Gender } from "../../models/Gender";
 import manPhoto from "../../assets/man.png";
 import womanPhoto from "../../assets/woman.png";
 
 interface UserPhotoProps {
-  sex?: Sex;
+  gender?: Gender;
 }
 
-const UserPhoto: FC<UserPhotoProps> = ({ sex = "man" }) => {
+const UserPhoto: FC<UserPhotoProps> = ({ gender = "man" }) => {
   let photo;
-  if (sex) {
-    photo = sex === "man" ? manPhoto : womanPhoto;
+  if (gender) {
+    photo = gender === "man" ? manPhoto : womanPhoto;
   }
 
   return <img className={styles["user-photo"]} src={photo} alt="Аватар пользователя" />;

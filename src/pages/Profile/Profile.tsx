@@ -5,15 +5,15 @@ import { string, object, ref, ObjectSchema } from "yup";
 import styles from "./Profile.module.css";
 import { profileAPI } from "../../services/ProfileService";
 import { IProfile } from "../../models/IProfile";
-import { Sex } from "../../models/Sex";
-import UserId from "../../components/UserId/UserId";
+import { Gender } from "../../models/Gender";
+import UserId from "./UserId/UserId";
 import InputField from "../../components/InputField/InputField";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 interface IBoxOption {
   text: string;
-  value: Sex;
+  value: Gender;
 }
 
 const selectorBoxOptions: IBoxOption[] = [
@@ -38,7 +38,7 @@ const Profile: FC = () => {
       .required("Необходимо заполнить данное поле"),
     userName: string().required("Необходимо заполнить данное поле"),
     password: string().required("Необходимо заполнить данное поле"),
-    gender: string<Sex>().required(),
+    gender: string<Gender>().required(),
     confirmPassword: string()
       .oneOf([ref("password")], "Пароли должны совпадать")
       .required("Необходимо заполнить данное поле"),

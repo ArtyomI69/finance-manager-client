@@ -2,15 +2,15 @@ import { FC } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 
-import { IRegistration } from "../../../models/IRegistration";
-import { Sex } from "../../../models/Sex";
+import { IProfile } from "../../../models/IProfile";
+import { Gender } from "../../../models/Gender";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
 import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
 
 interface IBoxOption {
   text: string;
-  value: Sex;
+  value: Gender;
 }
 
 const selectorBoxOptions: IBoxOption[] = [
@@ -19,7 +19,7 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const SignUp: FC = () => {
-  const initialValues: IRegistration = {
+  const initialValues: IProfile = {
     email: "",
     userName: "",
     gender: "man",
@@ -27,19 +27,19 @@ const SignUp: FC = () => {
     confirmPassword: "",
   };
 
-  const validationSchema: ObjectSchema<IRegistration> = object({
+  const validationSchema: ObjectSchema<IProfile> = object({
     email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
     userName: string().required("Необходимо заполнить данное поле"),
-    gender: string<Sex>().required(),
+    gender: string<Gender>().required(),
     password: string().required("Необходимо заполнить данное поле"),
     confirmPassword: string()
       .oneOf([ref("password")], "Пароли должны совпадать")
       .required("Необходимо заполнить данное поле"),
   });
 
-  const onSubmit = (values: IRegistration, onSubmitProps: FormikHelpers<IRegistration>) => {
+  const onSubmit = (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
     onSubmitProps.setSubmitting(true);
     setTimeout(() => {
       onSubmitProps.setSubmitting(false);

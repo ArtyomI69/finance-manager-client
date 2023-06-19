@@ -1,9 +1,9 @@
-import { Sex } from "./Sex";
+import { Gender } from "./Gender";
 
 export interface IProfile {
   email: string;
   userName: string;
-  sex: Sex;
+  gender: Gender;
   password: string;
   confirmPassword: string;
 }
