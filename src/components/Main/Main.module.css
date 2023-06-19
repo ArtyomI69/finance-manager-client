@@ -8,6 +8,7 @@
   background-color: #fff;
   padding: 2.4rem;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 /**************************/
