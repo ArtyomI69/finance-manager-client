@@ -1,0 +1,34 @@
+.fieldselection{
+
+    gap:5rem;
+    width: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+    position:static;
+}
+.chart-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    font-size: 1.8rem;
+    gap: 3.2rem;
+    margin-right: 5rem;
+  }
+  
+  .chart-form div {
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .chart-form div select,
+  .chart-form div input {
+    font-size: 1.6rem;
+    padding: 1.2rem;
+    border-radius: 9px;
+  }
+  

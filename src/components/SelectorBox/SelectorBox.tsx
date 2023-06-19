@@ -8,18 +8,19 @@ interface Option {
 }
 
 interface SelectorBoxProps {
-  name: string;
+  name?: string;
   label: string;
   options: Option[];
-  selectedValue: string;
+  selectedValue?: string;
   onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  CategoryBoxRef?:React.MutableRefObject<HTMLSelectElement>;
 }
 
-const SelectorBox: FC<SelectorBoxProps> = ({ label, name, options, selectedValue, onChange }) => {
+const SelectorBox: FC<SelectorBoxProps> = ({ label, name, options, selectedValue, onChange,CategoryBoxRef }) => {
   return (
     <div className={styles["selector-box"]}>
       <label htmlFor={name}>{label}</label>
-      <select value={selectedValue} id={name} name={name} onChange={onChange}>
+      <select value={selectedValue} id={name} name={name} onChange={onChange} ref={CategoryBoxRef}>
         {options.map((option, idx) => (
           <option key={idx.toString()} value={option.value}>
             {option.text}

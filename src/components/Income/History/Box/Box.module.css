@@ -1,0 +1,35 @@
+.title {
+    float: right;
+    font-size: 2rem;
+    min-width: 0;
+    border-radius: 15px;
+    gap: 10px;
+    box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 2rem;
+    padding-top: 1,9rem;
+    width: 65rem;
+    background-color: #fff;
+    margin-bottom: 7%;
+    display: flex;
+  justify-content: space-between;
+    }
+    .title2{
+        padding-top: 2%;
+        margin-left: 5%;
+    }
+    .title3{
+        position: static;
+        display: flex;
+    justify-content:left;
+    align-items:center;
+    margin-left: 2rem;
+    }
+    .title4{
+        width: 200%;
+    margin-top: 8%;
+    flex-direction:row; 
+    }
+
+   
+  

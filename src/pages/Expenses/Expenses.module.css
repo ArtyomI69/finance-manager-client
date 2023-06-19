@@ -1,2 +1,15 @@
 .expenses {
+   
+}
+.default{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: row;
+    position:static;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    position:static;
 }
