@@ -10,7 +10,7 @@ const GroupMembers: FC = () => {
 
   return (
     <div className={styles["group-members"]}>
-      {isGroupLeader && <InvitationInput />}
+      <InvitationInput />
       <MembersContainer isGroupLeader={isGroupLeader} />
       {!isGroupLeader && <LeaveGroupButton />}
     </div>
