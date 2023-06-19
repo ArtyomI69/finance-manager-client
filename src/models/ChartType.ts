@@ -1,1 +1,1 @@
-export type ChartType = "histogram" | "piechart";
+export type TransactionsDataType = "histogram" | "piechart" | "all-transactions";

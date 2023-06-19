@@ -4,7 +4,7 @@ import styles from "./Dashboard.module.css";
 import { useAppSelector } from "../../hooks/redux";
 import { dashboardAPI } from "../../services/DashboardService";
 import ChartForm from "./ChartForm/ChartForm";
-import Chart from "./Chart/Chart";
+import TransactionsData from "./TransactionsData/TransactionsData";
 import BalanceContainer from "./BalanceContainer/BalanceContainer";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
@@ -16,7 +16,7 @@ const Dashboard: FC = () => {
     <div className={styles.dashboard}>
       <ChartForm />
       {isLoading && <LoadingSpinner />}
-      {!isLoading && <Chart />}
+      {!isLoading && <TransactionsData />}
       {!isLoading && <BalanceContainer />}
     </div>
   );

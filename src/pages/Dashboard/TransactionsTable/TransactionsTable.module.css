@@ -1,0 +1,38 @@
+.transactions-table {
+  width: 100%;
+  font-size: 1.8rem;
+  border-collapse: collapse;
+}
+
+.transactions-table thead tr {
+  width: 100%;
+}
+
+.transactions-table th {
+  padding: 1.6rem 2.4rem;
+  text-align: left;
+}
+
+.transactions-table tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.transactions-table tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+.transactions-table thead th {
+  background-color: #087f5b;
+  color: #fff;
+  width: 33%;
+}
+/* .transactions-table thead,
+.transactions-table tbody {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.transactions-table tbody {
+  height: 100%;
+} */

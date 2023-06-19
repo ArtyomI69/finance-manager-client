@@ -40,7 +40,7 @@ html {
   /* Percentage of user's browser font-size setting */
   /* font-size: 62.5% === 1rem = 10px */
   font-size: 62.5%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -56,5 +56,16 @@ body {
 @media (max-width: 94em) {
   html {
     font-size: 50%;
+  }
+}
+
+/**************************/
+/* Ниже 1072px  */
+/**************************/
+
+@media (max-width: 67em) {
+  html {
+    overflow: auto;
+    overflow-x: hidden;
   }
 }
