@@ -14,7 +14,7 @@ interface TransactionsDataProps {
 const TransactionsData: FC<TransactionsDataProps> = ({ transactions }) => {
   const { transactionsDataType } = useAppSelector((state) => state.dashboardReducer);
 
-  const isTableSelected = transactionsDataType === "table--all-transactions--person";
+  const isTableSelected = transactionsDataType === "table--person";
 
   return (
     <div
@@ -23,9 +23,11 @@ const TransactionsData: FC<TransactionsDataProps> = ({ transactions }) => {
         isTableSelected ? styles["transactions-visualization--table"] : "",
       ].join(" ")}
     >
-      {transactionsDataType === "histogram" && <BarChart transactions={transactions} />}
-      {transactionsDataType === "piechart" && <PieChart transactions={transactions} />}
-      {transactionsDataType === "table--all-transactions--person" && (
+      {transactionsDataType === "histogram--person" && <BarChart transactions={transactions} />}
+      {transactionsDataType === "piechart--person--income" && (
+        <PieChart transactions={transactions} />
+      )}
+      {transactionsDataType === "table--person" && (
         <TransactionsTable transactions={transactions} />
       )}
     </div>

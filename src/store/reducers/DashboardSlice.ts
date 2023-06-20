@@ -9,7 +9,7 @@ interface DashboardState {
 
 const initialState: DashboardState = {
   timestamp: Date.now(),
-  transactionsDataType: "histogram",
+  transactionsDataType: "histogram--person",
 };
 
 export const dashboardSlice = createSlice({

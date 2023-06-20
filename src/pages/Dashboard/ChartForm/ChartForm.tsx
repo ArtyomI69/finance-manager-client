@@ -13,9 +13,9 @@ interface IBoxOption {
 }
 
 const selectorBoxOptions: IBoxOption[] = [
-  { text: "Гистограмма", value: "histogram" },
-  { text: "Круговая диаграмма", value: "piechart" },
-  { text: "Таблица транзакций", value: "table--all-transactions--person" },
+  { text: "Гистограмма", value: "histogram--person" },
+  { text: "Круговая диаграмма", value: "piechart--person--income" },
+  { text: "Таблица транзакций", value: "table--person" },
 ];
 
 const ChartForm: FC = () => {

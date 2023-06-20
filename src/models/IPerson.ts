@@ -2,8 +2,8 @@ import { Gender } from "./Gender";
 
 export interface IPerson {
   id: number;
-  teamID: number;
-  fullName: string;
+  team_id: number;
+  full_name: string;
   email: string;
   password: string;
   balance: number;

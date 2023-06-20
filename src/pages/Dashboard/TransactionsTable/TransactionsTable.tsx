@@ -15,6 +15,7 @@ const TransactionsTable: FC<TransactionsTableProps> = ({ transactions }) => {
           <th>Категория</th>
           <th>Описание</th>
           <th>Доход/Расход</th>
+          <th>Дата</th>
         </tr>
       </thead>
       <tbody>
@@ -22,86 +23,25 @@ const TransactionsTable: FC<TransactionsTableProps> = ({ transactions }) => {
           <th>Автосервис</th>
           <th>Помыл машину</th>
           <th>-700₽</th>
+          <th>25/05/2018</th>
         </tr>
         <tr>
           <th>Автосервис</th>
           <th>Помыл машину</th>
           <th>-700₽</th>
+          <th>25/05/2018</th>
         </tr>
         <tr>
           <th>Автосервис</th>
           <th>Помыл машину</th>
           <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
+          <th>25/05/2018</th>
         </tr>
         <tr>
           <th>Зарплата</th>
           <th>-</th>
           <th>-499₽</th>
+          <th>27/05/2018</th>
         </tr>
       </tbody>
     </table>
