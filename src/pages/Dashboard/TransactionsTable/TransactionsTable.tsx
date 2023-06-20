@@ -1,8 +1,13 @@
 import { FC } from "react";
 
 import styles from "./TransactionsTable.module.css";
+import { ITransaction } from "../../../models/ITransaction";
 
-const TransactionsTable: FC = () => {
+interface TransactionsTableProps {
+  transactions: ITransaction[];
+}
+
+const TransactionsTable: FC<TransactionsTableProps> = ({ transactions }) => {
   return (
     <table className={styles["transactions-table"]}>
       <thead>

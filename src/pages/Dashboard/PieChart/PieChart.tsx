@@ -3,20 +3,26 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData } from "chart.
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Pie } from "react-chartjs-2";
 
+import { ITransaction } from "../../../models/ITransaction";
+
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 ChartJS.defaults.font.family = "Rubik, sans-serif, 'FontAwesome'";
 
-const data: ChartData<"pie"> = {
-  labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
-  datasets: [
-    {
-      data: [3, 6, 9],
-      backgroundColor: ["#40c057", "red", "aqua"],
-    },
-  ],
-};
+interface PieChartProps {
+  transactions: ITransaction[];
+}
 
-const PieChart: FC = () => {
+const PieChart: FC<PieChartProps> = ({ transactions }) => {
+  const data: ChartData<"pie"> = {
+    labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
+    datasets: [
+      {
+        data: [3, 6, 9],
+        backgroundColor: ["#40c057", "red", "aqua"],
+      },
+    ],
+  };
+
   return (
     <Pie
       data={data}

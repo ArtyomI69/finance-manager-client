@@ -3,11 +3,11 @@ import { ITransaction } from "../models/ITransaction";
 
 export const dashboardAPI = createApi({
   reducerPath: "dashboardAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://jsonplaceholder.typicode.com/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
   endpoints: (build) => ({
     fetchTransactionsMonth: build.query<ITransaction[], number>({
       query: (timestamp = Date.now()) => ({
-        url: "/posts",
+        url: "/transactions",
         params: {
           _timestamp: timestamp,
         },

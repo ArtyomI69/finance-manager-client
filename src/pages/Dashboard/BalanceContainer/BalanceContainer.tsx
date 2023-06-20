@@ -2,8 +2,13 @@ import { FC } from "react";
 
 import styles from "./BalanceContainer.module.css";
 import BalanceItem from "./BalanceItem/BalanceItem";
+import { ITransaction } from "../../../models/ITransaction";
 
-const BalanceContainer: FC = () => {
+interface BalanceContainerProps {
+  transactions: ITransaction[];
+}
+
+const BalanceContainer: FC<BalanceContainerProps> = ({ transactions }) => {
   return (
     <div className={styles["balance-container"]}>
       <BalanceItem text="Суммарная прибыль" value={1000} valueColor="green" />

@@ -4,20 +4,20 @@ import styles from "./Dashboard.module.css";
 import { useAppSelector } from "../../hooks/redux";
 import { dashboardAPI } from "../../services/DashboardService";
 import ChartForm from "./ChartForm/ChartForm";
-import TransactionsData from "./TransactionsData/TransactionsData";
+import TransactionsData from "./TransactionsVisualization/TransactionsVisualization";
 import BalanceContainer from "./BalanceContainer/BalanceContainer";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Dashboard: FC = () => {
   const { timestamp } = useAppSelector((state) => state.dashboardReducer);
-  const { isLoading } = dashboardAPI.useFetchTransactionsMonthQuery(timestamp);
+  const { data, isLoading } = dashboardAPI.useFetchTransactionsMonthQuery(timestamp);
 
   return (
     <div className={styles.dashboard}>
       <ChartForm />
       {isLoading && <LoadingSpinner />}
-      {!isLoading && <TransactionsData />}
-      {!isLoading && <BalanceContainer />}
+      {!isLoading && <TransactionsData transactions={data!} />}
+      {!isLoading && <BalanceContainer transactions={data!} />}
     </div>
   );
 };

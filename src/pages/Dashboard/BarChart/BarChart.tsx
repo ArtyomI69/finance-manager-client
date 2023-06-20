@@ -10,22 +10,28 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+import { ITransaction } from "../../../models/ITransaction";
+
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const data: ChartData<"bar"> = {
-  labels: ["Mon", "Tue", "Wed"],
-  datasets: [
-    {
-      label: "Доходы",
-      data: [3, 6, 9],
-      backgroundColor: "#40c057",
-      borderColor: "black",
-      borderWidth: 1,
-    },
-  ],
-};
+interface BarChartProps {
+  transactions: ITransaction[];
+}
 
-const BarChart: FC = () => {
+const BarChart: FC<BarChartProps> = ({ transactions }) => {
+  const data: ChartData<"bar"> = {
+    labels: ["Mon", "Tue", "Wed"],
+    datasets: [
+      {
+        label: "Доходы",
+        data: [3, 6, 9],
+        backgroundColor: "#40c057",
+        borderColor: "black",
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <Bar
       data={data}

@@ -1,16 +1,28 @@
 {
   "transactions": [
     {
-      "amount": -1200
+      "amount": -700,
+      "description": "Помыл машину",
+      "category": "Автосервис",
+      "created_at": 1687252113350
     },
     {
-      "amount": 5300
+      "amount": -5300,
+      "category": "Онлайн покупки",
+      "description": null,
+      "created_at": 1687176543350
     },
     {
-      "amount": 17200
+      "amount": -600,
+      "category": "Продукты",
+      "description": null,
+      "created_at": 1687076543350
     },
     {
-      "amount": -4000
+      "amount": -4000,
+      "category": "Онлайн покупки",
+      "description": null,
+      "created_at": 1687176543350
     }
   ]
 }

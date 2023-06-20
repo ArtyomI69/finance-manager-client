@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { TransactionsDataType } from "../../models/ChartType";
+import { TransactionsVisualizationType } from "../../models/TransactionsVisualizationType";
 
 interface DashboardState {
   timestamp: number;
-  transactionsDataType: TransactionsDataType;
+  transactionsDataType: TransactionsVisualizationType;
 }
 
 const initialState: DashboardState = {
@@ -16,7 +16,7 @@ export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
   reducers: {
-    changeChartType(state, action: PayloadAction<{ chartType: TransactionsDataType }>) {
+    changeChartType(state, action: PayloadAction<{ chartType: TransactionsVisualizationType }>) {
       state.transactionsDataType = action.payload.chartType;
     },
     changeDate(state, action: PayloadAction<{ timestamp: number }>) {

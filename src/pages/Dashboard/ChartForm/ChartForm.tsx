@@ -1,7 +1,7 @@
 import { FC, ChangeEvent } from "react";
 
 import styles from "./ChartForm.module.css";
-import { TransactionsDataType } from "../../../models/ChartType";
+import { TransactionsVisualizationType } from "../../../models/TransactionsVisualizationType";
 import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
 import { dashboardSlice } from "../../../store/reducers/DashboardSlice";
 import SelectorBox from "../../../components/SelectorBox/SelectorBox";
@@ -9,13 +9,13 @@ import MonthPicker from "../MonthPicker/MonthPicker";
 
 interface IBoxOption {
   text: string;
-  value: TransactionsDataType;
+  value: TransactionsVisualizationType;
 }
 
 const selectorBoxOptions: IBoxOption[] = [
   { text: "Гистограмма", value: "histogram" },
   { text: "Круговая диаграмма", value: "piechart" },
-  { text: "Таблица транзакций", value: "all-transactions" },
+  { text: "Таблица транзакций", value: "table--all-transactions--person" },
 ];
 
 const ChartForm: FC = () => {
@@ -24,7 +24,9 @@ const ChartForm: FC = () => {
 
   const selectorBoxChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(
-      dashboardSlice.actions.changeChartType({ chartType: e.target.value as TransactionsDataType })
+      dashboardSlice.actions.changeChartType({
+        chartType: e.target.value as TransactionsVisualizationType,
+      })
     );
   };
 
@@ -32,7 +34,7 @@ const ChartForm: FC = () => {
     <form className={styles["chart-form"]}>
       <SelectorBox
         label="Тип диограммы"
-        name="transactions-data-type"
+        name="transactions-visualization-type"
         options={selectorBoxOptions}
         selectedValue={transactionsDataType}
         onChange={selectorBoxChangeHandler}
