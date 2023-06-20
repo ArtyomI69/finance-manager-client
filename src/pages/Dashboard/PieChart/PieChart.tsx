@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, Colors } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Pie } from "react-chartjs-2";
 
 import { ITransaction } from "../../../models/ITransaction";
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, Colors);
 ChartJS.defaults.font.family = "Rubik, sans-serif, 'FontAwesome'";
 
 interface PieChartProps {
@@ -14,11 +14,11 @@ interface PieChartProps {
 
 const PieChart: FC<PieChartProps> = ({ transactions }) => {
   const data: ChartData<"pie"> = {
-    labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
+    // labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
+    labels: transactions.map(({ category }) => category),
     datasets: [
       {
-        data: [3, 6, 9],
-        backgroundColor: ["#40c057", "red", "aqua"],
+        data: transactions.map(({ amount }) => amount),
       },
     ],
   };

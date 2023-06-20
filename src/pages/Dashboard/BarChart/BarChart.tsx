@@ -19,13 +19,39 @@ interface BarChartProps {
 }
 
 const BarChart: FC<BarChartProps> = ({ transactions }) => {
+  const sortedTransactions = [...transactions].sort((a, b) => a.created_at - b.created_at);
+
+  const uniqueDates = Array.from(new Set(sortedTransactions.map(({ created_at }) => created_at)));
+  const labels = uniqueDates.map((created_at) => new Date(created_at).toLocaleDateString("ru-RU"));
+
+  const incomes: number[] = Array.from(Array(labels.length)).map(() => 0);
+  const expenses: number[] = Array.from(Array(labels.length)).map(() => 0);
+  for (let i = 0; i < labels.length; i++) {
+    for (let j = 0; j < sortedTransactions.length; j++) {
+      const date = new Date(sortedTransactions[j].created_at).toLocaleDateString("ru-RU");
+      if (labels[i] === date) {
+        if (sortedTransactions[j].amount > 0) incomes[i] += sortedTransactions[j].amount;
+        else expenses[i] += Math.abs(sortedTransactions[j].amount);
+      }
+    }
+  }
+
   const data: ChartData<"bar"> = {
-    labels: ["Mon", "Tue", "Wed"],
+    labels: labels,
     datasets: [
       {
         label: "Доходы",
-        data: [3, 6, 9],
-        backgroundColor: "#40c057",
+        // data: [1, 3],
+        data: incomes,
+        backgroundColor: "green",
+        borderColor: "black",
+        borderWidth: 1,
+      },
+      {
+        label: "Расходы",
+        // data: [2, 4],
+        data: expenses,
+        backgroundColor: "red",
         borderColor: "black",
         borderWidth: 1,
       },
@@ -40,6 +66,9 @@ const BarChart: FC<BarChartProps> = ({ transactions }) => {
         plugins: {
           legend: {
             labels: { color: "#000", font: { size: 18 } },
+          },
+          datalabels: {
+            color: "#fff",
           },
         },
       }}
