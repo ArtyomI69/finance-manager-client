@@ -25,7 +25,7 @@ const Profile: FC = () => {
   const { isLoading } = profileAPI.useFetchProfileQuery();
 
   const initialValues: IProfile = {
-    userName: "Евгений Петров",
+    fullName: "Евгений Петров",
     gender: "man",
     email: "bruh@mail.ru",
     password: "123",
@@ -36,7 +36,7 @@ const Profile: FC = () => {
     email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
-    userName: string().required("Необходимо заполнить данное поле"),
+    fullName: string().required("Необходимо заполнить данное поле"),
     password: string().required("Необходимо заполнить данное поле"),
     gender: string<Gender>().required(),
     confirmPassword: string()

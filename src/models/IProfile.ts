@@ -1,9 +1,5 @@
-import { Gender } from "./Gender";
+import { IPerson } from "./IPerson";
 
-export interface IProfile {
-  email: string;
-  userName: string;
-  gender: Gender;
-  password: string;
+export interface IProfile extends Omit<IPerson, "balance" | "teamID" | "id"> {
   confirmPassword: string;
 }

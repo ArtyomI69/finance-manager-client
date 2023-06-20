@@ -1,20 +1,16 @@
 {
   "transactions": [
     {
-      "id": 1,
-      "value": -1200
+      "amount": -1200
     },
     {
-      "id": 2,
-      "value": 5300
+      "amount": 5300
     },
     {
-      "id": 3,
-      "value": 17200
+      "amount": 17200
     },
     {
-      "id": 4,
-      "value": -4000
+      "amount": -4000
     }
   ]
 }

@@ -21,7 +21,7 @@ const selectorBoxOptions: IBoxOption[] = [
 const SignUp: FC = () => {
   const initialValues: IProfile = {
     email: "",
-    userName: "",
+    fullName: "",
     gender: "man",
     password: "",
     confirmPassword: "",
@@ -31,7 +31,7 @@ const SignUp: FC = () => {
     email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
-    userName: string().required("Необходимо заполнить данное поле"),
+    fullName: string().required("Необходимо заполнить данное поле"),
     gender: string<Gender>().required(),
     password: string().required("Необходимо заполнить данное поле"),
     confirmPassword: string()
