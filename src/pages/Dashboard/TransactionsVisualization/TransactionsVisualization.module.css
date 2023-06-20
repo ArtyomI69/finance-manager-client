@@ -1,4 +1,4 @@
-.transactions-data {
+.transactions-visualization {
   padding: 1.6em 3.2rem;
   height: 55%;
   width: 90%;
@@ -9,12 +9,12 @@
   overflow: auto;
 }
 
-.transactions-data--table {
+.transactions-visualization--table {
   padding: 0;
   border: none;
 }
 
-.transactions-data canvas {
+.transactions-visualization canvas {
   width: 100% !important;
   height: 100% !important;
 }

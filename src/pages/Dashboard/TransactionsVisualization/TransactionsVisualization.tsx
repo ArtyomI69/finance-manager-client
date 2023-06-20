@@ -19,8 +19,8 @@ const TransactionsData: FC<TransactionsDataProps> = ({ transactions }) => {
   return (
     <div
       className={[
-        styles["transactions-data"],
-        isTableSelected ? styles["transactions-data--table"] : "",
+        styles["transactions-visualization"],
+        isTableSelected ? styles["transactions-visualization--table"] : "",
       ].join(" ")}
     >
       {transactionsDataType === "histogram" && <BarChart transactions={transactions} />}
