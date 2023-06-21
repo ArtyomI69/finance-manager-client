@@ -25,7 +25,7 @@ const Profile: FC = () => {
   const { isLoading } = profileAPI.useFetchProfileQuery();
 
   const initialValues: IProfile = {
-    fullName: "Евгений Петров",
+    full_name: "Евгений Петров",
     gender: "man",
     email: "bruh@mail.ru",
     password: "123",
@@ -36,7 +36,7 @@ const Profile: FC = () => {
     email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
-    fullName: string().required("Необходимо заполнить данное поле"),
+    full_name: string().required("Необходимо заполнить данное поле"),
     password: string().required("Необходимо заполнить данное поле"),
     gender: string<Gender>().required(),
     confirmPassword: string()
@@ -66,7 +66,7 @@ const Profile: FC = () => {
           {(formik) => (
             <Form>
               <div>
-                <InputField label="Имя" type="text" name="userName" />
+                <InputField label="Имя" type="text" name="full_name" />
                 <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
                 <InputField label="Email" type="email" name="email" />
                 <InputField label="Пароль" type="password" name="password" />

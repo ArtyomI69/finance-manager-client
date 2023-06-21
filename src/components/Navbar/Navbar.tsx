@@ -3,6 +3,7 @@ import {
   faChartLine,
   faUser,
   faMoneyBillTrendUp,
+  faMoneyBillWave,
   faMoneyBillTransfer,
   faRightFromBracket,
   faUserGroup,
@@ -38,6 +39,12 @@ const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
           closeMobileNavBar={closeMobileNavBar}
         />
         <NavItem
+          text="Переводы"
+          to="/money-transfers"
+          icon={faMoneyBillTransfer}
+          closeMobileNavBar={closeMobileNavBar}
+        />
+        <NavItem
           text="Доходы"
           to="/incomes"
           icon={faMoneyBillTrendUp}
@@ -46,7 +53,7 @@ const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
         <NavItem
           text="Расходы"
           to="/expenses"
-          icon={faMoneyBillTransfer}
+          icon={faMoneyBillWave}
           closeMobileNavBar={closeMobileNavBar}
         />
         <NavItem

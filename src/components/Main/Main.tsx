@@ -7,6 +7,7 @@ import Profile from "../../pages/Profile/Profile";
 import Group from "../../pages/Group/Group";
 import GroupMembers from "../../pages/Group/GroupMembers/GroupMembers";
 import GroupInvitations from "../../pages/Group/GroupInvitations/GroupInvitations";
+import MoneyTransfers from "../../pages/MoneyTransfers/MoneyTransfers";
 import Incomes from "../../pages/Incomes/Incomes";
 import Expenses from "../../pages/Expenses/Expenses";
 import PageTitle from "../PageTitle/PageTitle";
@@ -23,6 +24,7 @@ const Main: FC = () => {
           <Route path="members" element={<GroupMembers />} />
           <Route path="invitations" element={<GroupInvitations />} />
         </Route>
+        <Route path="/money-transfers" element={<MoneyTransfers />} />
         <Route path="/incomes" element={<Incomes />} />
         <Route path="/expenses" element={<Expenses />} />
         <Route path="*" element={<Navigate to={"/"} />} />

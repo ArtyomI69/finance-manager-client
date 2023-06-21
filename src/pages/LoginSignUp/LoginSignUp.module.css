@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 100%;
-  overflow: auto;
+  overflow-y: auto;
   box-shadow: 0 4.8rem 4.8rem rgba(0, 0, 0, 0.1);
 }
 

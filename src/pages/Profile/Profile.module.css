@@ -43,6 +43,7 @@
   border-radius: 9px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0.4rem 0.8rem;
+  width: 100%;
 }
 
 .profile form button {
