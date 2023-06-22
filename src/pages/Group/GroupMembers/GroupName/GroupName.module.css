@@ -1,0 +1,38 @@
+.group-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.group-name input {
+  outline: none;
+  font-size: 1.6rem;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.8rem;
+}
+
+.group-name button {
+  outline: none;
+  font-size: 2rem;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.group-name button:hover {
+  background-color: #f1f3f5;
+}
+
+.accept {
+  color: green;
+}
+
+.cancel {
+  color: red;
+}
