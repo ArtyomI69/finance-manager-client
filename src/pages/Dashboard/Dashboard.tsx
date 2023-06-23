@@ -7,17 +7,21 @@ import ChartForm from "./ChartForm/ChartForm";
 import TransactionsData from "./TransactionsVisualization/TransactionsVisualization";
 import BalanceContainer from "./BalanceContainer/BalanceContainer";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 const Dashboard: FC = () => {
   const { timestamp } = useAppSelector((state) => state.dashboardReducer);
-  const { data, isLoading } = transactionsAPI.useFetchTransactionsMonthQuery(timestamp);
+  const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery(timestamp);
 
   return (
     <div className={styles.dashboard}>
+      {isError && (
+        <ErrorModal message="Не удалось получить транзакции. Проверьте ваше интернет подключение." />
+      )}
       <ChartForm />
-      {isLoading && <LoadingSpinner />}
-      {!isLoading && <TransactionsData transactions={data!} />}
-      {!isLoading && <BalanceContainer transactions={data!} />}
+      {(isLoading || isError) && <LoadingSpinner />}
+      {!isLoading && !isError && <TransactionsData transactions={data!} />}
+      {!isLoading && !isError && <BalanceContainer transactions={data!} />}
     </div>
   );
 };
