@@ -42,6 +42,7 @@
 
 .login-sign-up form input,
 .login-sign-up form select {
+  width: 100%;
   outline: none;
   font-size: 1.6rem;
   color: #000;
