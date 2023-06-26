@@ -3,7 +3,7 @@ import { ITransaction } from "../models/ITransaction";
 
 export const transactionsAPI = createApi({
   reducerPath: "transactionsAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_LOCAL_DB_URL }),
   endpoints: (build) => ({
     fetchTransactionsMonth: build.query<ITransaction[], number>({
       query: (timestamp = Date.now()) => ({

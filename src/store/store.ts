@@ -1,15 +1,17 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import dashboardReducer from "./reducers/DashboardSlice";
+import authReducer from "./reducers/AuthSlice";
 import { transactionsAPI } from "../services/TransactionsService";
-import { profileAPI } from "../services/ProfileService";
+import { userAPI } from "../services/UserService";
 import { groupMembersAPI } from "../services/GroupMembersService";
 import { groupInvitationsAPI } from "../services/GroupInvitationsService";
 
 const rootReducer = combineReducers({
   dashboardReducer,
+  authReducer,
   [transactionsAPI.reducerPath]: transactionsAPI.reducer,
-  [profileAPI.reducerPath]: profileAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
   [groupMembersAPI.reducerPath]: groupMembersAPI.reducer,
   [groupInvitationsAPI.reducerPath]: groupInvitationsAPI.reducer,
 });
@@ -20,7 +22,7 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
         transactionsAPI.middleware,
-        profileAPI.middleware,
+        userAPI.middleware,
         groupMembersAPI.middleware,
         groupInvitationsAPI.middleware
       ),

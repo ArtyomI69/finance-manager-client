@@ -3,10 +3,14 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ObjectSchema } from "yup";
 
 import { ILogin } from "../../../models/ILogin";
+import { authAPI } from "../../../services/AuthService";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
+import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 const Login: FC = () => {
+  const [loginUser, { isError }] = authAPI.useLoginMutation();
+
   const initialValues: ILogin = {
     email: "",
     password: "",
@@ -19,16 +23,14 @@ const Login: FC = () => {
     password: string().required("Необходимо заполнить данное поле"),
   });
 
-  const onSubmit = (values: ILogin, onSubmitProps: FormikHelpers<ILogin>) => {
+  const onSubmit = async (data: ILogin, onSubmitProps: FormikHelpers<ILogin>) => {
     onSubmitProps.setSubmitting(true);
-    setTimeout(() => {
-      onSubmitProps.setSubmitting(false);
-      console.log(values);
-    }, 3000);
+    await loginUser(data);
   };
 
   return (
     <>
+      {isError && <ErrorModal message="Пользователя с данным email или паролем не существует" />}
       <LoginSignUpNavbar />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formik) => (

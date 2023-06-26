@@ -3,7 +3,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ref, ObjectSchema } from "yup";
 
 import styles from "./Profile.module.css";
-import { profileAPI } from "../../services/ProfileService";
+import { userAPI } from "../../services/UserService";
 import { IProfile } from "../../models/IProfile";
 import { Gender } from "../../models/Gender";
 import UserId from "./UserId/UserId";
@@ -22,7 +22,7 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const Profile: FC = () => {
-  const { isLoading } = profileAPI.useFetchProfileQuery();
+  const { isLoading } = userAPI.useFetchProfileQuery();
 
   const initialValues: IProfile = {
     full_name: "Евгений Петров",
