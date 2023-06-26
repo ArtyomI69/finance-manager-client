@@ -2,7 +2,7 @@ import { FC} from "react";
 import styles from "./ButtonDelete.module.css";
 import { dellete } from "../../ImageCategory/Image";
 interface DeleteProps{
-  deleteBox:()=>void;
+  deleteBox?:()=>void;
 }
 const ButtonDelete: FC<DeleteProps>= ({deleteBox})=>{
   

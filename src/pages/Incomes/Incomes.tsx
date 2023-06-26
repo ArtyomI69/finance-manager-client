@@ -40,10 +40,7 @@ const Incomes: FC = () => {
   const deleteBox = () => {
     boxs.pop();
     console.log(1);
-    const index = boxs.indexOf(boxs[0], 0);
-    if (index > -1) {
-      boxs.splice(index, 1);
-    }
+   Setbox([...boxs]);
   };
   const [monthYear, setMonthYear] = useState(new Date());
   return (
@@ -57,6 +54,7 @@ const Incomes: FC = () => {
             monthYear={monthYear}
             setMonthYear={setMonthYear}
             CategoryBoxRef={CategoryBoxRef}
+            addNewPost={addNewPost}
           />
           <div className={styles.box}>
             {boxs.map((value) => (
@@ -64,9 +62,6 @@ const Incomes: FC = () => {
             ))}
           </div>
         </div>
-        <button onClick={addNewPost} className={styless.button}>
-          Добавить
-        </button>
       </div>
     </>
   );

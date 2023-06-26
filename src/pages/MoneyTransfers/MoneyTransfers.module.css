@@ -1,2 +1,24 @@
 .money-transfers {
+    display: flex;
+    align-items: space-between;
 }
+.box{
+    width: 80rem;
+    height: 60rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    border:1px solid black;
+    overflow:auto;
+    overflow-x:hidden;
+}
+.title{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+

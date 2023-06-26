@@ -1,4 +1,4 @@
-.fieldselection{
+.inputselection{
 
     gap:5rem;
     width: 50%;
@@ -9,28 +9,6 @@
     flex-direction: column;
     position:static;
 }
-.chart-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    font-size: 1.8rem;
-    gap: 3.2rem;
-    margin-right: 5rem;
-  }
-  
-  .chart-form div {
-    gap: 1.2rem;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .chart-form div select,
-  .chart-form div input {
-    font-size: 1.6rem;
-    padding: 1.2rem;
-    border-radius: 9px;
-  }
   .button{
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -44,7 +22,7 @@
     font-size: 14px;
     padding: 8px 16px;
     margin-top: 2.5rem;
-    margin-left: 20rem;
+    margin-left: 10rem;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: background-color 0.1s linear;

@@ -5,7 +5,7 @@ import { IBox } from "./IBox";
 import ButtonDelete from "./ButtonDelete/ButtonDelete";
 interface BoxProps{
   value:IBox;
-  deleteBox:() => void;
+  deleteBox?:() => void;
 }
 const Box: FC<BoxProps> = (props:BoxProps)=>{
   

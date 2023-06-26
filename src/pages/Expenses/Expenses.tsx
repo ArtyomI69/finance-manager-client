@@ -48,20 +48,23 @@ const Expenses: FC = () => {
   const [monthYear, setMonthYear] = useState(new Date());
     return (
     <>
-      <div className={styles.incomes}>
-      <Sum value={sum} valueColor="red"/>
-      <div className={styles.default}>
-      <FieldSelection  sumBoxRefs={sumBoxRef}CommentBoxRefs={CommentBoxRef} 
-      monthYear={monthYear} setMonthYear={setMonthYear} CategoryBoxRef={CategoryBoxRef}/>
-        <div className={styles.box}>
-        {
-          boxs.map((value)=>
-          <Box value={value} key={value.id} deleteBox={deleteBox}/>
-          )
-        }
-          </div>  
+     <div className={styles.incomes}>
+        <Sum value={sum} valueColor="red" />
+        <div className={styles.default}>
+          <FieldSelection
+            sumBoxRefs={sumBoxRef}
+            CommentBoxRefs={CommentBoxRef}
+            monthYear={monthYear}
+            setMonthYear={setMonthYear}
+            CategoryBoxRef={CategoryBoxRef}
+            addNewPost={addNewPost}
+          />
+          <div className={styles.box}>
+            {boxs.map((value) => (
+              <Box value={value} key={value.id} deleteBox={deleteBox} />
+            ))}
+          </div>
         </div>
-        <button  onClick={addNewPost} className={styless.button}>Добавить</button>
       </div>
     </>
   );

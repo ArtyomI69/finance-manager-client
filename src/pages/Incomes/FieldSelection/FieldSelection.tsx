@@ -9,6 +9,7 @@ interface SelectionProps {
   sumBoxRefs: React.MutableRefObject<HTMLInputElement>;
   CommentBoxRefs: React.MutableRefObject<HTMLTextAreaElement>;
   CategoryBoxRef: React.MutableRefObject<HTMLSelectElement>;
+  addNewPost:() => void;
 }
 const selectorBoxOptions = [
   { text: "Биткоин", value: "Биткоин" },
@@ -16,17 +17,17 @@ const selectorBoxOptions = [
   { text: "Подарок", value: "Подарок" },
   { text: "Подработка", value: "Подработка" },
 ];
-const addNewPost = () => {};
 const FieldSelection: FC<SelectionProps> = ({
   sumBoxRefs,
   CommentBoxRefs,
   CategoryBoxRef,
   monthYear,
   setMonthYear,
+  addNewPost,
 }) => {
   return (
     <div className={styles.fieldselection}>
-      <Field value="sum" reff={sumBoxRefs} />
+      <Field placeholder="Введите сумму" reff={sumBoxRefs} />
       <FieldMonate monthYear={monthYear} setMonthYear={setMonthYear} />
       <form className={styles["chart-form"]}>
         <SelectorBox
@@ -36,6 +37,9 @@ const FieldSelection: FC<SelectionProps> = ({
         />
       </form>
       <textarea placeholder="Введите описание" ref={CommentBoxRefs}></textarea>
+      <button onClick={addNewPost} className={styles.button}>
+          Добавить
+        </button>
     </div>
   );
 };

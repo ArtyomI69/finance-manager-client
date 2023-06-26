@@ -1,5 +1,5 @@
 .expenses {
-   
+    display: block;
 }
 .default{
     display: flex;
@@ -9,7 +9,13 @@
     position:static;
 }
 .box{
+    height: 60rem;
+    width: 85rem;
     display: flex;
-    flex-direction: column;
     position:static;
+    flex-direction: column;
+    overflow:auto;
+    overflow-x:hidden;
 }
+
+

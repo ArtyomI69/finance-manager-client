@@ -1,19 +1,10 @@
 import React, { FC, createRef } from "react";
 import styles from "./Field.module.css";
 interface FieldProps{
-    value: "sum" | "title"| "description";
-    reff:React.MutableRefObject<HTMLInputElement>;
+  placeholder: string;
+  reff?:React.MutableRefObject<HTMLInputElement>;
 }
-const Field: FC<FieldProps> = (({value,reff})=>{
-    let placeholder;
-    switch(value) {
-        case 'sum':  
-        placeholder="Введите сумму";
-        break;
-        case 'title':  
-        placeholder="Введите заголовок";
-        break;
-      }
+const Field: FC<FieldProps> = (({placeholder,reff})=>{
       const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault()
       }
