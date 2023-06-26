@@ -9,7 +9,7 @@ import InputField from "../../../components/InputField/InputField";
 import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 const Login: FC = () => {
-  const [loginUser, { isError }] = authAPI.useLoginMutation();
+  const [loginUser, { isError, error }] = authAPI.useLoginMutation();
 
   const initialValues: ILogin = {
     email: "",
