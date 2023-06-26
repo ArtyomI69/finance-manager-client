@@ -16,6 +16,8 @@ const App: FC = () => {
       {!isAuth && <LoginSignUp />}
       {isAuth && <Header />}
       {isAuth && <Main />}
+      {/* {isAuth && <Header />}
+      {isAuth && <Main />} */}
     </div>
   );
 };

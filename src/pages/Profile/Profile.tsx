@@ -22,7 +22,7 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const Profile: FC = () => {
-  const { isLoading } = userAPI.useFetchProfileQuery();
+  const { isLoading } = userAPI.useFetchMeQuery();
 
   const initialValues: IProfile = {
     full_name: "Евгений Петров",
