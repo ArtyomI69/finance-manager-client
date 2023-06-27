@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import styles from "./MembersContainer.module.css";
-import { groupMembersAPI } from "../../../../services/GroupMembersService";
+import { groupMembersAPI } from "../../../../store/services/GroupMembersService";
 import Member from "./Member/Member";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 

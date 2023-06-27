@@ -3,7 +3,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ref, ObjectSchema } from "yup";
 
 import styles from "./Profile.module.css";
-import { userAPI } from "../../services/UserService";
+import { userAPI } from "../../store/services/UserService";
 import { IProfile } from "../../models/IProfile";
 import { Gender } from "../../models/Gender";
 import UserId from "./UserId/UserId";

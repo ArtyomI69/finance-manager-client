@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ITransaction } from "../models/ITransaction";
+import { ITransaction } from "../../models/ITransaction";
 
 export const transactionsAPI = createApi({
   reducerPath: "transactionsAPI",

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import styles from "./GroupInvitations.module.css";
-import { groupInvitationsAPI } from "../../../services/GroupInvitationsService";
+import { groupInvitationsAPI } from "../../../store/services/GroupInvitationsService";
 import Invitation from "./Invitation/Invitation";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 

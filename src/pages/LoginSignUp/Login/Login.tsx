@@ -3,13 +3,13 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ObjectSchema } from "yup";
 
 import { ILogin } from "../../../models/ILogin";
-import { authAPI } from "../../../services/AuthService";
+import { authAPI } from "../../../store/services/AuthService";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
 import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 const Login: FC = () => {
-  const [loginUser, { isError, error }] = authAPI.useLoginMutation();
+  const [loginUser, { isError }] = authAPI.useLoginMutation();
 
   const initialValues: ILogin = {
     email: "",

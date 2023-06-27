@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import styles from "./Dashboard.module.css";
 import { useAppSelector } from "../../hooks/redux";
-import { transactionsAPI } from "../../services/TransactionsService";
+import { transactionsAPI } from "../../store/services/TransactionsService";
 import ChartForm from "./ChartForm/ChartForm";
 import TransactionsData from "./TransactionsVisualization/TransactionsVisualization";
 import BalanceContainer from "./BalanceContainer/BalanceContainer";

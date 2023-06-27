@@ -2,11 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import dashboardReducer from "./reducers/DashboardSlice";
 import authReducer from "./reducers/AuthSlice";
-import { transactionsAPI } from "../services/TransactionsService";
-import { authAPI } from "../services/AuthService";
-import { userAPI } from "../services/UserService";
-import { groupMembersAPI } from "../services/GroupMembersService";
-import { groupInvitationsAPI } from "../services/GroupInvitationsService";
+import { transactionsAPI } from "./services/TransactionsService";
+import { authAPI } from "./services/AuthService";
+import { userAPI } from "./services/UserService";
+import { groupMembersAPI } from "./services/GroupMembersService";
+import { groupInvitationsAPI } from "./services/GroupInvitationsService";
 
 const rootReducer = combineReducers({
   dashboardReducer,
