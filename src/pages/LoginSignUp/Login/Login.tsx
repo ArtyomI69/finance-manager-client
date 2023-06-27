@@ -40,7 +40,10 @@ const Login: FC = () => {
               <InputField label="Email" type="email" name="email" />
               <InputField label="Пароль" type="password" name="password" />
             </div>
-            <button disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}>
+            <button
+              type="submit"
+              disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}
+            >
               Войти
             </button>
           </Form>

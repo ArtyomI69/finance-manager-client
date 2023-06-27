@@ -10,13 +10,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navbar.module.css";
+import { authAPI } from "../../store/services/AuthService";
 import NavItem from "./NavItem/NavItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface NavbarProps {
   closeMobileNavBar: () => void;
 }
 
 const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
+  const [logout] = authAPI.useLogoutMutation();
+
   return (
     <nav className={styles.navbar}>
       <ul className={styles["nav-list"]}>
@@ -56,12 +60,11 @@ const Navbar: FC<NavbarProps> = ({ closeMobileNavBar }) => {
           icon={faMoneyBillWave}
           closeMobileNavBar={closeMobileNavBar}
         />
-        <NavItem
-          text="Выйти"
-          to="/exit"
-          icon={faRightFromBracket}
-          closeMobileNavBar={closeMobileNavBar}
-        />
+        <li>
+          <button onClick={() => logout()}>
+            <FontAwesomeIcon icon={faRightFromBracket}></FontAwesomeIcon>Выйти
+          </button>
+        </li>
       </ul>
     </nav>
   );

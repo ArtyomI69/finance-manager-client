@@ -61,7 +61,10 @@ const SignUp: FC = () => {
               <InputField label="Пароль" type="password" name="password" />
               <InputField label="Потвердите пароль" type="password" name="confirmPassword" />
             </div>
-            <button disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}>
+            <button
+              type="submit"
+              disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}
+            >
               Зарегистрироваться
             </button>
           </Form>

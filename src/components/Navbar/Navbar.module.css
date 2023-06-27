@@ -1,5 +1,4 @@
 .navbar {
-  font-size: 2rem;
   font-size: 1.8rem;
   font-weight: 600;
   height: 100%;
@@ -13,7 +12,6 @@
   justify-content: center;
   flex-direction: column;
   gap: 0.4rem;
-  /* gap: 1.6rem; */
 }
 
 .nav-list svg {
@@ -33,7 +31,9 @@
   margin-top: auto;
 }
 
-.nav-list li a {
+.nav-list li a,
+.nav-list li button {
+  cursor: pointer;
   text-decoration: none;
   color: #555;
   display: block;
@@ -43,6 +43,18 @@
 .nav-list li a.active {
   color: #000;
   border-left: 5px solid #000;
+}
+
+.nav-list li button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.nav-list li button svg {
+  margin-right: 1.2rem;
 }
 
 /**************************/

@@ -4,6 +4,7 @@ import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from "@reduxjs/toolk
 import { RootState } from "../store";
 import { authAPI } from "./AuthService";
 import { authSlice } from "../reducers/AuthSlice";
+import { IAuthResponse } from "../types/IAuthResponse";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${import.meta.env.VITE_BASE_URL}`,
@@ -28,18 +29,13 @@ export const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 403) {
     // try to get a new token
-    const refreshResult = await baseQuery(
-      {
-        url: "/api/v1/auth/refresh",
-        method: "POST",
-      },
-      api,
-      extraOptions
-    );
-    if (refreshResult.data) {
+    const refreshResult = (await api.dispatch(authAPI.endpoints.refreshTokens.initiate())) as {
+      data: IAuthResponse;
+    };
+    console.log(refreshResult);
+    if (!refreshResult.data.error) {
       // store the new token
-      const { token } = refreshResult.data as { token: string };
-      api.dispatch(authSlice.actions.setAuth({ token }));
+      api.dispatch(authSlice.actions.setAuth({ token: refreshResult.data.token }));
       // retry the initial query
       result = await baseQuery(args, api, extraOptions);
     } else {
