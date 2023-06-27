@@ -22,8 +22,10 @@ export const authAPI = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          if (data.error) return;
+
           dispatch(authSlice.actions.setAuth(data));
-          // await dispatch(userAPI.endpoints.fetchMe.initiate());
+          await dispatch(userAPI.endpoints.fetchMe.initiate());
         } catch (error) {}
       },
     }),
@@ -38,7 +40,7 @@ export const authAPI = createApi({
           if (data.error) return;
 
           dispatch(authSlice.actions.setAuth({ token: data.token }));
-          // await dispatch(userAPI.endpoints.fetchMe.initiate());
+          await dispatch(userAPI.endpoints.fetchMe.initiate());
         } catch (error) {}
       },
     }),

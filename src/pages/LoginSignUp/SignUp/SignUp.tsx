@@ -14,15 +14,15 @@ interface IBoxOption {
 }
 
 const selectorBoxOptions: IBoxOption[] = [
-  { text: "Мужской", value: "man" },
-  { text: "Женский", value: "woman" },
+  { text: "Мужской", value: "M" },
+  { text: "Женский", value: "F" },
 ];
 
 const SignUp: FC = () => {
   const initialValues: IProfile = {
     email: "",
     full_name: "",
-    gender: "man",
+    gender: "M",
     password: "",
     confirmPassword: "",
   };

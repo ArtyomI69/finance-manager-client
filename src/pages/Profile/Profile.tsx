@@ -17,19 +17,19 @@ interface IBoxOption {
 }
 
 const selectorBoxOptions: IBoxOption[] = [
-  { text: "Мужской", value: "man" },
-  { text: "Женский", value: "woman" },
+  { text: "Мужской", value: "M" },
+  { text: "Женский", value: "F" },
 ];
 
 const Profile: FC = () => {
-  const { isLoading } = userAPI.useFetchMeQuery();
+  const { data, isLoading } = userAPI.useFetchMeQuery();
 
   const initialValues: IProfile = {
-    full_name: "Евгений Петров",
-    gender: "man",
-    email: "bruh@mail.ru",
-    password: "123",
-    confirmPassword: "123",
+    full_name: data!.full_name,
+    gender: data!.gender,
+    email: data!.email,
+    password: "",
+    confirmPassword: "",
   };
 
   const validationSchema: ObjectSchema<IProfile> = object({

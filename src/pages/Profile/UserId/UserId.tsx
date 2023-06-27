@@ -1,11 +1,14 @@
 import { FC } from "react";
 
 import styles from "./UserId.module.css";
+import { userAPI } from "../../../store/services/UserService";
 
 const UserId: FC = () => {
+  const { data } = userAPI.useFetchMeQuery();
+
   return (
     <p className={styles["user-id"]}>
-      ID:<span>312312312321</span>
+      ID:<span>{data?.id}</span>
     </p>
   );
 };
