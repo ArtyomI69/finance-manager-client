@@ -26,3 +26,11 @@
   color: #fff;
   width: 25%;
 }
+
+.income {
+  color: green;
+}
+
+.expense {
+  color: red;
+}

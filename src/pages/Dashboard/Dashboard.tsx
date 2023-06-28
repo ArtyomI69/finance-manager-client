@@ -10,8 +10,13 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 const Dashboard: FC = () => {
-  const { timestamp } = useAppSelector((state) => state.dashboardReducer);
-  const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery(timestamp);
+  const { timestamp, transactionsVisualization } = useAppSelector(
+    (state) => state.dashboardReducer
+  );
+  const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery({
+    timestamp,
+    transactionsVisualization,
+  });
 
   return (
     <div className={styles.dashboard}>

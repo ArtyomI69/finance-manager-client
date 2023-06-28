@@ -1,7 +1,7 @@
 export interface ITransaction {
   id: number;
-  category: string;
-  description: string;
+  category: { id: number; name: string };
+  description: string | null;
   amount: number;
   created_at: number;
 }

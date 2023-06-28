@@ -3,22 +3,22 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, Colors } from
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Pie } from "react-chartjs-2";
 
-import { ITransaction } from "../../../models/ITransaction";
+import { IGroupedTransaction } from "../../../models/IGroupedTransaction";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, Colors);
 ChartJS.defaults.font.family = "Rubik, sans-serif, 'FontAwesome'";
 
 interface PieChartProps {
-  transactions: ITransaction[];
+  transactions: IGroupedTransaction[];
 }
 
 const PieChart: FC<PieChartProps> = ({ transactions }) => {
   const data: ChartData<"pie"> = {
     // labels: ["\uf07a Продукты", "\uf0ac Онлайн покупки", "\uf1b9 Автосервис"],
-    labels: transactions.map(({ category }) => category),
+    labels: transactions.length > 0 ? transactions.map(({ name }) => name) : [],
     datasets: [
       {
-        data: transactions.map(({ amount }) => amount),
+        data: transactions.length > 0 ? transactions.map(({ amount }) => amount) : [],
       },
     ],
   };

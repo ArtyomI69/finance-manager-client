@@ -1,4 +1,4 @@
-export type TransactionsVisualizationType =
+export type TransactionsVisualization =
   | "histogram--person"
   | "histogram--group"
   | "piechart--person--income"

@@ -1,19 +1,55 @@
 import { FC } from "react";
 
 import styles from "./BalanceContainer.module.css";
-import BalanceItem from "./BalanceItem/BalanceItem";
+import { useAppSelector } from "../../../hooks/redux";
 import { ITransaction } from "../../../models/ITransaction";
+import { IGroupedTransaction } from "../../../models/IGroupedTransaction";
+import BalanceItem from "./BalanceItem/BalanceItem";
 
 interface BalanceContainerProps {
-  transactions: ITransaction[];
+  transactions: ITransaction[] | IGroupedTransaction[];
 }
 
 const BalanceContainer: FC<BalanceContainerProps> = ({ transactions }) => {
+  const { transactionsVisualization } = useAppSelector((state) => state.dashboardReducer);
+
+  let income = 0;
+  let expenses = 0;
+  let balance = 0;
+  switch (transactionsVisualization) {
+    case "histogram--person":
+    case "histogram--group":
+    case "table--group":
+    case "table--person": {
+      (transactions as ITransaction[]).forEach(({ amount }) => {
+        if (amount > 0) income += amount;
+        else expenses += Math.abs(amount);
+      });
+      break;
+    }
+    case "piechart--person--income":
+    case "piechart--group--income": {
+      (transactions as IGroupedTransaction[]).forEach(({ amount }) => {
+        income += amount;
+      });
+      break;
+    }
+    case "piechart--person--expenses":
+    case "piechart--group--expenses": {
+      (transactions as IGroupedTransaction[]).forEach(({ amount }) => {
+        expenses += Math.abs(amount);
+      });
+      break;
+    }
+    default:
+  }
+  balance = Math.abs(income - expenses);
+
   return (
     <div className={styles["balance-container"]}>
-      <BalanceItem text="Суммарная прибыль" value={1000} valueColor="green" />
-      <BalanceItem text="Суммарные расходы" value={250} valueColor="red" />
-      <BalanceItem text="Баланс" value={750} valueColor="black" />
+      <BalanceItem text="Суммарная прибыль" value={income} valueColor="green" />
+      <BalanceItem text="Суммарные расходы" value={expenses} valueColor="red" />
+      <BalanceItem text="Баланс" value={balance} valueColor="black" />
     </div>
   );
 };

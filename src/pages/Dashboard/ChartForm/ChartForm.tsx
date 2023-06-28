@@ -1,7 +1,7 @@
 import { FC, ChangeEvent } from "react";
 
 import styles from "./ChartForm.module.css";
-import { TransactionsVisualizationType } from "../../../models/TransactionsVisualizationType";
+import { TransactionsVisualization } from "../../../models/TransactionsVisualization";
 import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
 import { dashboardSlice } from "../../../store/reducers/DashboardSlice";
 import SelectorBox from "../../../components/SelectorBox/SelectorBox";
@@ -9,23 +9,28 @@ import MonthPicker from "../MonthPicker/MonthPicker";
 
 interface IBoxOption {
   text: string;
-  value: TransactionsVisualizationType;
+  value: TransactionsVisualization;
 }
 
 const selectorBoxOptions: IBoxOption[] = [
-  { text: "Гистограмма", value: "histogram--person" },
-  { text: "Круговая диаграмма", value: "piechart--person--income" },
-  { text: "Таблица транзакций", value: "table--person" },
+  { text: "Личные транзакции", value: "histogram--person" },
+  { text: "Групповые транзакции", value: "histogram--group" },
+  { text: "Личные доходы", value: "piechart--person--income" },
+  { text: "Личные расходы", value: "piechart--person--expenses" },
+  { text: "Групповые доходы", value: "piechart--group--income" },
+  { text: "Групповые расходы", value: "piechart--group--expenses" },
+  { text: "Личные транзакции (таблица)", value: "table--person" },
+  { text: "Групповые транзакции (таблица)", value: "table--group" },
 ];
 
 const ChartForm: FC = () => {
-  const { transactionsDataType } = useAppSelector((state) => state.dashboardReducer);
+  const { transactionsVisualization } = useAppSelector((state) => state.dashboardReducer);
   const dispatch = useAppDispatch();
 
   const selectorBoxChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(
       dashboardSlice.actions.changeChartType({
-        chartType: e.target.value as TransactionsVisualizationType,
+        transactionsVisualization: e.target.value as TransactionsVisualization,
       })
     );
   };
@@ -36,7 +41,7 @@ const ChartForm: FC = () => {
         label="Тип диограммы"
         name="transactions-visualization-type"
         options={selectorBoxOptions}
-        selectedValue={transactionsDataType}
+        selectedValue={transactionsVisualization}
         onChange={selectorBoxChangeHandler}
       />
       <MonthPicker />

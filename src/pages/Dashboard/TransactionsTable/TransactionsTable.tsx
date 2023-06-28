@@ -8,6 +8,8 @@ interface TransactionsTableProps {
 }
 
 const TransactionsTable: FC<TransactionsTableProps> = ({ transactions }) => {
+  const sortedTransactions = [...transactions].sort((a, b) => a.created_at - b.created_at);
+
   return (
     <table className={styles["transactions-table"]}>
       <thead>
@@ -19,30 +21,14 @@ const TransactionsTable: FC<TransactionsTableProps> = ({ transactions }) => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-          <th>25/05/2018</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-          <th>25/05/2018</th>
-        </tr>
-        <tr>
-          <th>Автосервис</th>
-          <th>Помыл машину</th>
-          <th>-700₽</th>
-          <th>25/05/2018</th>
-        </tr>
-        <tr>
-          <th>Зарплата</th>
-          <th>-</th>
-          <th>-499₽</th>
-          <th>27/05/2018</th>
-        </tr>
+        {sortedTransactions.map(({ category, description, amount, created_at, id }) => (
+          <tr key={id}>
+            <th>{category.name}</th>
+            <th>{description}</th>
+            <th className={amount > 0 ? styles.income : styles.expense}>{amount}₽</th>
+            <th>{new Date(created_at).toLocaleDateString("ru-Ru")}</th>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
