@@ -35,7 +35,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     console.log(refreshResult);
     if (!refreshResult.data.error) {
       // store the new token
-      api.dispatch(authSlice.actions.setAuth({ token: refreshResult.data.token }));
+      api.dispatch(authSlice.actions.setAuth(refreshResult.data));
       // retry the initial query
       result = await baseQuery(args, api, extraOptions);
     } else {

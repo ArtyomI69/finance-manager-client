@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { IAuthResponse } from "../types/IAuthResponse";
+
 interface AuthState {
   isAuth: boolean;
   token: string;
@@ -18,7 +20,7 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.token = "";
     },
-    setAuth(state, action: PayloadAction<{ token: string }>) {
+    setAuth(state, action: PayloadAction<IAuthResponse>) {
       state.isAuth = true;
       state.token = action.payload.token;
     },
