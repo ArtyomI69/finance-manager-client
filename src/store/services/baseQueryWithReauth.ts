@@ -32,7 +32,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     const refreshResult = (await api.dispatch(authAPI.endpoints.refreshTokens.initiate())) as {
       data: IAuthResponse;
     };
-    console.log(refreshResult);
+
     if (!refreshResult.data.error) {
       // store the new token
       api.dispatch(authSlice.actions.setAuth(refreshResult.data));

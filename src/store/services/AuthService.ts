@@ -4,7 +4,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ILogin } from "../../models/ILogin";
 import { IAuthResponse } from "../types/IAuthResponse";
 import { authSlice } from "../reducers/AuthSlice";
-import { userAPI } from "./UserService";
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
@@ -25,7 +24,6 @@ export const authAPI = createApi({
           if (data.error) return;
 
           dispatch(authSlice.actions.setAuth(data));
-          await dispatch(userAPI.endpoints.fetchMe.initiate());
         } catch (error) {}
       },
     }),
@@ -40,7 +38,6 @@ export const authAPI = createApi({
           if (data.error) return;
 
           dispatch(authSlice.actions.setAuth(data));
-          await dispatch(userAPI.endpoints.fetchMe.initiate());
         } catch (error) {}
       },
     }),

@@ -23,11 +23,11 @@ export const setupStore = () => {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
+        authAPI.middleware,
         transactionsAPI.middleware,
         userAPI.middleware,
         groupMembersAPI.middleware,
-        groupInvitationsAPI.middleware,
-        authAPI.middleware
+        groupInvitationsAPI.middleware
       ),
   });
 };

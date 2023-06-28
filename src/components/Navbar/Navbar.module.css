@@ -71,7 +71,8 @@
 /**************************/
 
 @media (max-width: 67em) {
-  .navbar {
+  .navbar,
+  .nav-list li button {
     font-size: 3rem;
   }
 

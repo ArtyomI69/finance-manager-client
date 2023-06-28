@@ -1,12 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+
+import { baseQueryWithReauth } from "./baseQueryWithReauth";
 
 export const groupMembersAPI = createApi({
   reducerPath: "groupMembersAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://jsonplaceholder.typicode.com/" }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
     fetchAllGroupMembers: build.query<object, void>({
       query: () => ({
-        url: "/posts",
+        url: "/categoryTransactions/team",
       }),
     }),
   }),

@@ -1,16 +1,15 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { ITransaction } from "../../models/ITransaction";
+
+import { baseQueryWithReauth } from "./baseQueryWithReauth";
 
 export const transactionsAPI = createApi({
   reducerPath: "transactionsAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_LOCAL_DB_URL }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
-    fetchTransactionsMonth: build.query<ITransaction[], number>({
-      query: (timestamp = Date.now()) => ({
-        url: "/transactions",
-        params: {
-          _timestamp: timestamp,
-        },
+    fetchTransactionsMonth: build.query<ITransaction[], void>({
+      query: () => ({
+        url: "/categoryTransactions/person",
       }),
     }),
   }),
