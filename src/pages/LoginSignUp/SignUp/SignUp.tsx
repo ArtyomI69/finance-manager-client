@@ -2,11 +2,13 @@ import { FC } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 
+import { authAPI } from "../../../store/services/AuthService";
 import { IProfile } from "../../../models/IProfile";
 import { Gender } from "../../../models/Gender";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
 import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
+import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 interface IBoxOption {
   text: string;
@@ -19,6 +21,8 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const SignUp: FC = () => {
+  const [register, { isError }] = authAPI.useRegisterMutation();
+
   const initialValues: IProfile = {
     email: "",
     full_name: "",
@@ -39,16 +43,16 @@ const SignUp: FC = () => {
       .required("Необходимо заполнить данное поле"),
   });
 
-  const onSubmit = (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
+  const onSubmit = async (data: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
     onSubmitProps.setSubmitting(true);
-    setTimeout(() => {
-      onSubmitProps.setSubmitting(false);
-      console.log(values);
-    }, 3000);
+    await register(data);
   };
 
   return (
     <>
+      {isError && (
+        <ErrorModal message="Не удалось зарегестрироваться, пожалуйста попробуйте позже" />
+      )}
       <LoginSignUpNavbar />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formik) => (

@@ -43,7 +43,7 @@ const BalanceContainer: FC<BalanceContainerProps> = ({ transactions }) => {
     }
     default:
   }
-  balance = Math.abs(income - expenses);
+  balance = income - expenses;
 
   return (
     <div className={styles["balance-container"]}>

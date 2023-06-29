@@ -2,6 +2,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { ILogin } from "../../models/ILogin";
+import { IProfile } from "../../models/IProfile";
 import { IAuthResponse } from "../types/IAuthResponse";
 import { authSlice } from "../reducers/AuthSlice";
 
@@ -12,6 +13,26 @@ export const authAPI = createApi({
     credentials: "include",
   }),
   endpoints: (build) => ({
+    register: build.mutation<IAuthResponse, IProfile>({
+      query: ({ full_name, email, gender, password }) => ({
+        url: "/register",
+        method: "POST",
+        body: {
+          name: full_name,
+          email,
+          gender,
+          password,
+        },
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (data.error) return;
+
+          dispatch(authSlice.actions.setAuth(data));
+        } catch (error) {}
+      },
+    }),
     login: build.mutation<IAuthResponse, ILogin>({
       query: (body) => ({
         url: "/authenticate",
