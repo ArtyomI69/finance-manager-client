@@ -19,14 +19,15 @@ interface BarChartProps {
 }
 
 const BarChart: FC<BarChartProps> = ({ transactions }) => {
-  const uniqueDates = Array.from(new Set(transactions.map(({ created_at }) => created_at))).sort();
-  const labels = uniqueDates.map((created_at) => new Date(created_at).toLocaleDateString("ru-RU"));
+  const dates = transactions.map(({ createdAt }) => new Date(createdAt).getTime());
+  const uniqueDates = Array.from(new Set(dates)).sort();
+  const labels = uniqueDates.map((createdAt) => new Date(createdAt).toLocaleDateString("ru-RU"));
 
   const incomes: number[] = Array.from(Array(labels.length)).map(() => 0);
   const expenses: number[] = Array.from(Array(labels.length)).map(() => 0);
   for (let i = 0; i < labels.length; i++) {
     for (let j = 0; j < transactions.length; j++) {
-      const date = new Date(transactions[j].created_at).toLocaleDateString("ru-RU");
+      const date = new Date(transactions[j].createdAt).toLocaleDateString("ru-RU");
       if (labels[i] === date) {
         if (transactions[j].amount > 0) incomes[i] += transactions[j].amount;
         else expenses[i] += Math.abs(transactions[j].amount);

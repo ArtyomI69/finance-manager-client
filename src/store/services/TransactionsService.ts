@@ -48,14 +48,19 @@ interface FetchTransactionsInput {
 export const transactionsAPI = createApi({
   reducerPath: "transactionsAPI",
   baseQuery: baseQueryWithReauth,
+  tagTypes: ["transaction"],
   endpoints: (build) => ({
     fetchTransactionsMonth: build.query<
       ITransaction[] | IGroupedTransaction[],
       FetchTransactionsInput
     >({
-      query: ({ transactionsVisualization }) => ({
+      query: ({ transactionsVisualization, timestamp }) => ({
         url: getFetchTransactionsUrl(transactionsVisualization),
+        params: {
+          timestamp,
+        },
       }),
+      providesTags: () => ["transaction"],
     }),
   }),
 });
