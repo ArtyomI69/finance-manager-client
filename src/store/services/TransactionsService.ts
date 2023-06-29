@@ -10,28 +10,28 @@ const getFetchTransactionsUrl = (transactionsVisualization: TransactionsVisualiz
   switch (transactionsVisualization) {
     case "table--person":
     case "histogram--person": {
-      url = "/categoryTransactions/person";
+      url = "/categoryTransactions/person/month";
       break;
     }
     case "table--group":
     case "histogram--group": {
-      url = "/categoryTransactions/team";
+      url = "/categoryTransactions/team/month";
       break;
     }
     case "piechart--person--income": {
-      url = "/categoryTransactions/person/income";
+      url = "/categoryTransactions/person/income/month";
       break;
     }
     case "piechart--person--expenses": {
-      url = "/categoryTransactions/person/expenses";
+      url = "/categoryTransactions/person/expenses/month";
       break;
     }
     case "piechart--group--income": {
-      url = "/categoryTransactions/team/income";
+      url = "/categoryTransactions/team/income/month";
       break;
     }
     case "piechart--group--expenses": {
-      url = "/categoryTransactions/team/expenses";
+      url = "/categoryTransactions/team/expenses/month";
       break;
     }
     default:
@@ -48,7 +48,6 @@ interface FetchTransactionsInput {
 export const transactionsAPI = createApi({
   reducerPath: "transactionsAPI",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["transaction"],
   endpoints: (build) => ({
     fetchTransactionsMonth: build.query<
       ITransaction[] | IGroupedTransaction[],
@@ -60,7 +59,6 @@ export const transactionsAPI = createApi({
           timestamp,
         },
       }),
-      providesTags: () => ["transaction"],
     }),
   }),
 });

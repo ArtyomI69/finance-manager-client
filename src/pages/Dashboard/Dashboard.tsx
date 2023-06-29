@@ -13,6 +13,7 @@ const Dashboard: FC = () => {
   const { timestamp, transactionsVisualization } = useAppSelector(
     (state) => state.dashboardReducer
   );
+
   const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery({
     timestamp,
     transactionsVisualization,
