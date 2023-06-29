@@ -5,8 +5,8 @@ import authReducer from "./reducers/AuthSlice";
 import { transactionsAPI } from "./services/TransactionsService";
 import { authAPI } from "./services/AuthService";
 import { userAPI } from "./services/UserService";
-import { groupMembersAPI } from "./services/GroupMembersService";
-import { groupInvitationsAPI } from "./services/GroupInvitationsService";
+import { groupAPI } from "./services/GroupService";
+import { invitationsAPI } from "./services/InvitationsService";
 
 const rootReducer = combineReducers({
   dashboardReducer,
@@ -14,8 +14,8 @@ const rootReducer = combineReducers({
   [authAPI.reducerPath]: authAPI.reducer,
   [transactionsAPI.reducerPath]: transactionsAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
-  [groupMembersAPI.reducerPath]: groupMembersAPI.reducer,
-  [groupInvitationsAPI.reducerPath]: groupInvitationsAPI.reducer,
+  [groupAPI.reducerPath]: groupAPI.reducer,
+  [invitationsAPI.reducerPath]: invitationsAPI.reducer,
 });
 
 export const setupStore = () => {
@@ -26,8 +26,8 @@ export const setupStore = () => {
         authAPI.middleware,
         transactionsAPI.middleware,
         userAPI.middleware,
-        groupMembersAPI.middleware,
-        groupInvitationsAPI.middleware
+        groupAPI.middleware,
+        invitationsAPI.middleware
       ),
   });
 };
