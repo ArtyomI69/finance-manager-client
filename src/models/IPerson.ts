@@ -1,4 +1,5 @@
 import { Gender } from "./Gender";
+import { Role } from "./Role";
 
 export interface IPerson {
   id: number;
@@ -8,4 +9,5 @@ export interface IPerson {
   password: string;
   balance: number;
   gender: Gender;
+  role: Role;
 }

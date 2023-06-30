@@ -1,6 +1,8 @@
+/* eslint-disable no-empty */
 import { FC } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
-import { string, object, ref, ObjectSchema } from "yup";
+import { string, object, ref } from "yup";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Profile.module.css";
 import { userAPI } from "../../store/services/UserService";
@@ -10,6 +12,7 @@ import UserId from "./UserId/UserId";
 import InputField from "../../components/InputField/InputField";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 interface IBoxOption {
   text: string;
@@ -22,7 +25,9 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const Profile: FC = () => {
-  const { data, isLoading } = userAPI.useFetchMeQuery();
+  const { data, isLoading, isError } = userAPI.useFetchMeQuery();
+  const [updateMe, { isError: isUpdateError }] = userAPI.useUpdateMeMutation();
+  const navigate = useNavigate();
 
   const initialValues: IProfile = {
     full_name: data!.full_name,
@@ -32,30 +37,34 @@ const Profile: FC = () => {
     confirmPassword: "",
   };
 
-  const validationSchema: ObjectSchema<IProfile> = object({
+  const validationSchema = object({
     email: string()
       .email("Введите email в правильном формате")
       .required("Необходимо заполнить данное поле"),
     full_name: string().required("Необходимо заполнить данное поле"),
-    password: string().required("Необходимо заполнить данное поле"),
     gender: string<Gender>().required(),
-    confirmPassword: string()
-      .oneOf([ref("password")], "Пароли должны совпадать")
-      .required("Необходимо заполнить данное поле"),
+    password: string(),
+    confirmPassword: string().oneOf([ref("password")], "Пароли должны совпадать"),
   });
 
-  const onSubmit = (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
+  const onSubmit = async (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
     onSubmitProps.setSubmitting(true);
-    setTimeout(() => {
-      onSubmitProps.setSubmitting(false);
-      console.log(values);
-    }, 3000);
+    try {
+      await updateMe(values);
+      navigate("/");
+    } catch {}
   };
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <>
+      {isError && (
+        <ErrorModal message="Не удалось загрузить данные! Пожалуйста повторите попытку позже" />
+      )}
+      {isUpdateError && (
+        <ErrorModal message="Не удалось обновить данные! Пожалуйста повторите попытку позже" />
+      )}
       <div className={styles.profile}>
         <UserId />
         <Formik
