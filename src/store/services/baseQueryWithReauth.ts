@@ -32,6 +32,16 @@ export const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
+
+  const authUrls = [
+    "/api/v1/auth/refresh",
+    "/api/v1/auth/authenticate",
+    "/api/v1/auth/register",
+    "/api/v1/auth/logout",
+  ];
+  const isAuthRequest = authUrls.includes(typeof args === "string" ? args : args.url);
+  if (isAuthRequest) return result;
+
   if (result.error && result.error.status === 403) {
     // try to get a new token
     const refreshResult = (await baseQueryRefreshNoHeaders(
