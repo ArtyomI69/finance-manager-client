@@ -2,33 +2,18 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import dashboardReducer from "./reducers/DashboardSlice";
 import authReducer from "./reducers/AuthSlice";
-import { transactionsAPI } from "./services/TransactionsService";
-import { authAPI } from "./services/AuthService";
-import { userAPI } from "./services/UserService";
-import { groupAPI } from "./services/GroupService";
-import { invitationsAPI } from "./services/InvitationsService";
+import { baseAPI } from "./services/baseAPI";
 
 const rootReducer = combineReducers({
   dashboardReducer,
   authReducer,
-  [authAPI.reducerPath]: authAPI.reducer,
-  [transactionsAPI.reducerPath]: transactionsAPI.reducer,
-  [userAPI.reducerPath]: userAPI.reducer,
-  [groupAPI.reducerPath]: groupAPI.reducer,
-  [invitationsAPI.reducerPath]: invitationsAPI.reducer,
+  [baseAPI.reducerPath]: baseAPI.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(
-        authAPI.middleware,
-        transactionsAPI.middleware,
-        userAPI.middleware,
-        groupAPI.middleware,
-        invitationsAPI.middleware
-      ),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseAPI.middleware),
   });
 };
 

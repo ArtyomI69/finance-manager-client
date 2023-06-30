@@ -1,7 +1,5 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseAPI } from "./baseAPI";
 import { ITransaction } from "../../models/ITransaction";
-
-import { baseQueryWithReauth } from "./baseQueryWithReauth";
 import { TransactionsVisualization } from "../../models/TransactionsVisualization";
 import { IGroupedTransaction } from "../../models/IGroupedTransaction";
 
@@ -45,10 +43,7 @@ interface FetchTransactionsInput {
   timestamp: number;
 }
 
-export const transactionsAPI = createApi({
-  reducerPath: "transactionsAPI",
-  baseQuery: baseQueryWithReauth,
-  tagTypes: ["transaction"],
+export const transactionsAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
     fetchTransactionsMonth: build.query<
       ITransaction[] | IGroupedTransaction[],
@@ -60,7 +55,7 @@ export const transactionsAPI = createApi({
           timestamp,
         },
       }),
-      providesTags: ["transaction"],
+      providesTags: () => ["transaction"],
     }),
   }),
 });

@@ -1,21 +1,15 @@
 /* eslint-disable no-empty */
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { baseAPI } from "./baseAPI";
 import { ILogin } from "../../models/ILogin";
 import { IProfile } from "../../models/IProfile";
 import { IAuthResponse } from "../types/IAuthResponse";
 import { authSlice } from "../reducers/AuthSlice";
 
-export const authAPI = createApi({
-  reducerPath: "authAPI",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BASE_URL}/api/v1/auth`,
-    credentials: "include",
-  }),
+export const authAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
     register: build.mutation<IAuthResponse, IProfile>({
       query: ({ full_name, email, gender, password }) => ({
-        url: "/register",
+        url: "/api/v1/auth/register",
         method: "POST",
         body: {
           name: full_name,
@@ -30,12 +24,13 @@ export const authAPI = createApi({
           if (data.error) return;
 
           dispatch(authSlice.actions.setAuth(data));
+          dispatch(baseAPI.util.resetApiState());
         } catch (error) {}
       },
     }),
     login: build.mutation<IAuthResponse, ILogin>({
       query: (body) => ({
-        url: "/authenticate",
+        url: "/api/v1/auth/authenticate",
         method: "POST",
         body,
       }),
@@ -45,12 +40,13 @@ export const authAPI = createApi({
           if (data.error) return;
 
           dispatch(authSlice.actions.setAuth(data));
+          dispatch(baseAPI.util.resetApiState());
         } catch (error) {}
       },
     }),
     refreshTokens: build.mutation<IAuthResponse, void>({
       query: () => ({
-        url: "/refresh",
+        url: "/api/v1/auth/refresh",
         method: "POST",
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
@@ -64,7 +60,7 @@ export const authAPI = createApi({
     }),
     logout: build.mutation<IAuthResponse, void>({
       query: () => ({
-        url: "/logout",
+        url: "/api/v1/auth/logout",
         method: "POST",
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {

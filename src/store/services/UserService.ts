@@ -1,19 +1,14 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-
-import { baseQueryWithReauth } from "./baseQueryWithReauth";
+import { baseAPI } from "./baseAPI";
 import { IPerson } from "../../models/IPerson";
 import { IProfile } from "../../models/IProfile";
 
-export const userAPI = createApi({
-  reducerPath: "userAPI",
-  baseQuery: baseQueryWithReauth,
-  tagTypes: ["user"],
+export const userAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
     fetchMe: build.query<IPerson, void>({
       query: () => ({
         url: "/me",
       }),
-      providesTags: ["user"],
+      providesTags: () => ["user"],
     }),
     updateMe: build.mutation<void, Omit<IProfile, "confirmPassword">>({
       query: (body) => ({
@@ -21,7 +16,7 @@ export const userAPI = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["user"],
+      invalidatesTags: () => ["user"],
     }),
   }),
 });
