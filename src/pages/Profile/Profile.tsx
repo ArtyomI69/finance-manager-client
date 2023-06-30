@@ -49,10 +49,9 @@ const Profile: FC = () => {
 
   const onSubmit = async (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
     onSubmitProps.setSubmitting(true);
-    try {
-      await updateMe(values);
-      navigate("/");
-    } catch {}
+    const payload = (await updateMe(values)) as { error: object };
+    if (payload.error) return;
+    navigate("/");
   };
 
   if (isLoading) return <LoadingSpinner />;
