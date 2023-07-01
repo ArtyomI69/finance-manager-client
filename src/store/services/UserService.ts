@@ -6,7 +6,7 @@ export const userAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
     fetchMe: build.query<IPerson, void>({
       query: () => ({
-        url: "/me",
+        url: "/people/me",
       }),
       providesTags: () => ["user"],
     }),
@@ -16,7 +16,7 @@ export const userAPI = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: () => ["user"],
+      invalidatesTags: (_, error) => (!error ? ["user"] : []),
     }),
   }),
 });
