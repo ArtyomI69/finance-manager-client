@@ -33,13 +33,8 @@ export const baseQueryWithReauth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  const authUrls = [
-    "/api/v1/auth/refresh",
-    "/api/v1/auth/authenticate",
-    "/api/v1/auth/register",
-    "/api/v1/auth/logout",
-  ];
-  const isAuthRequest = authUrls.includes(typeof args === "string" ? args : args.url);
+  const authEndpoints = ["register", "login", "refreshTokens", "logout"];
+  const isAuthRequest = authEndpoints.includes(api.endpoint);
   if (isAuthRequest) return result;
 
   if (result.error && result.error.status === 403) {
