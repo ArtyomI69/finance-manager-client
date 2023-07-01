@@ -18,7 +18,7 @@
 @media (max-width: 67em) {
   .main {
     border-radius: 0;
-    padding-top: 88px;
+    margin-top: 88px;
     overflow: hidden;
   }
 }

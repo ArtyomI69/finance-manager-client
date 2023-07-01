@@ -1,0 +1,15 @@
+.message-container {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin: 32px;
+  z-index: 10000;
+}
+
+.message-container ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
+}

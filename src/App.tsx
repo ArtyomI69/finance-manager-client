@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 import FullScreenLoader from "./components/FullScreenLoader/FullScreenLoader";
+import MessageContainer from "./components/MessageContainer/MessageContainer";
 
 const App: FC = () => {
   const { isAuth } = useAppSelector((state) => state.authReducer);
@@ -18,14 +19,17 @@ const App: FC = () => {
   }, []);
 
   return (
-    <div className={styles.app}>
-      {isLoading && <FullScreenLoader />}
-      {!isAuth && <LoginSignUp />}
-      {isAuth && <Header />}
-      {isAuth && <Main />}
-      {/* <Header /> */}
-      {/* <Main /> */}
-    </div>
+    <>
+      <MessageContainer />
+      <div className={styles.app}>
+        {isLoading && <FullScreenLoader />}
+        {!isAuth && <LoginSignUp />}
+        {isAuth && <Header />}
+        {isAuth && <Main />}
+        {/* <Header /> */}
+        {/* <Main /> */}
+      </div>
+    </>
   );
 };
 
