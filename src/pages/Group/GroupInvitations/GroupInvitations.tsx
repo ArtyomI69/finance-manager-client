@@ -1,21 +1,21 @@
 import { FC } from "react";
 
 import styles from "./GroupInvitations.module.css";
-import { invitationsAPI } from "../../../store/services/InvitationsService";
+import { groupAPI } from "../../../store/services/GroupService";
 import Invitation from "./Invitation/Invitation";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 const GroupInvitations: FC = () => {
-  const { isLoading } = invitationsAPI.useFetchAllInvitationsQuery();
+  const { data, isLoading } = groupAPI.useFetchAllInvitationsQuery();
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className={styles["group-invitations"]}>
       <ul>
-        <Invitation />
-        <Invitation />
-        <Invitation />
+        {data!.map(({ personFrom }) => (
+          <Invitation personFrom={personFrom} />
+        ))}
       </ul>
     </div>
   );

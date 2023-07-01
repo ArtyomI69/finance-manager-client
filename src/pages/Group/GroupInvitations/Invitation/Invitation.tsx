@@ -3,14 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Invitation.module.css";
+import { IInvitation } from "../../../../models/IInvitations";
 import UserPhoto from "../../../../components/UserPhoto/UserPhoto";
 
-const Invitation: FC = () => {
+const Invitation: FC<IInvitation> = ({ personFrom: { full_name, gender, team } }) => {
   return (
     <li className={styles.invitation}>
-      <UserPhoto />
+      <UserPhoto gender={gender} />
       <p className={styles.name}>
-        <span>Joe Schmoe</span> пришлашает вас в свою группу
+        <span>{full_name}</span> пришлашает вас в <span>{team.name}</span>
       </p>
       <div className={styles.buttons}>
         <button className={styles["accept-button"]}>
