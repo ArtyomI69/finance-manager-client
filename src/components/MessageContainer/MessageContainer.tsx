@@ -12,9 +12,9 @@ const MessageContainer: FC = () => {
       {ReactDom.createPortal(
         <div className={styles["message-container"]}>
           <ul>
-            <Message message="Данные об аккаунте успешно обновленны" type="SUCCESS" />
+            <Message text="Данные об аккаунте успешно обновленны" type="SUCCESS" />
             <Message
-              message="Не удалось обновить данные об аккаунте. Пожалуйста повторите позже"
+              text="Не удалось обновить данные об аккаунте. Пожалуйста повторите позже"
               type="ERROR"
             />
           </ul>

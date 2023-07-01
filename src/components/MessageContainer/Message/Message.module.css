@@ -1,5 +1,6 @@
 .message {
-  padding: 0.8rem 1.6rem;
+  padding: 0.4rem 0.8rem;
+  padding-right: 0;
   background-color: #f8f9fa;
   color: #000;
   border-radius: 9px;
@@ -26,6 +27,7 @@
 }
 
 .message button {
+  border-radius: 9px;
   outline: none;
   font-size: 2rem;
   border: none;

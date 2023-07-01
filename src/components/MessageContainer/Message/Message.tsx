@@ -3,20 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faXmarkCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Message.module.css";
+import { MessageType } from "../../../models/MessageType";
 
 interface MessageProps {
-  message: string;
-  type?: "SUCCESS" | "ERROR";
+  text: string;
+  type?: MessageType;
 }
 
-const Message: FC<MessageProps> = ({ message, type }) => {
+const Message: FC<MessageProps> = ({ text, type }) => {
   const className = [styles.message];
   if (type === "SUCCESS") className.push(styles.success);
   if (type === "ERROR") className.push(styles.error);
 
   return (
     <li className={className.join(" ")}>
-      <p>{message}</p>
+      <p>{text}</p>
       {type === "SUCCESS" && <FontAwesomeIcon className={styles.icon} icon={faCheckCircle} />}
       {type === "ERROR" && <FontAwesomeIcon className={styles.icon} icon={faXmarkCircle} />}
       <button>
