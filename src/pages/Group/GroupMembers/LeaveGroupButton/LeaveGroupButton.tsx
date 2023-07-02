@@ -5,15 +5,16 @@ import styles from "./LeaveGroupButton.module.css";
 import { groupAPI } from "../../../../store/services/GroupService";
 
 const LeaveGroupButton: FC = () => {
-  const [leaveGroup, { isError }] = groupAPI.useLeaveGroupMutation();
+  const [leaveGroup, { isError, error }] = groupAPI.useLeaveGroupMutation();
+
+  useEffect(() => {
+    if (isError) toast.error("Не удалось покинуть группу. Пожалуйста попробуйте позже");
+    if (error) console.log(error);
+  }, [isError, error]);
 
   const leaveGroupHandler = () => {
     leaveGroup();
   };
-
-  useEffect(() => {
-    if (isError) toast.error("Не удалось покинуть группу. Пожалуйста попробуйте позже");
-  }, [isError]);
 
   return (
     <button onClick={leaveGroupHandler} className={styles["leave-group-button"]}>

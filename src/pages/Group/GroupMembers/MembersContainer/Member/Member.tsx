@@ -47,7 +47,7 @@ const Member: FC<MemberProps> = ({ isGroupLeader, name, balance, gender, isMe, i
         Баланс:<span>{balance}₽</span>
       </p>
       {isMe && <p className={styles.role}>Я</p>}
-      {role === "ROLE_LEADER" && !isMe} <p className={styles.role}>Лидер</p>
+      {role === "ROLE_LEADER" && !isMe && <p className={styles.role}>Лидер</p>}
       {isGroupLeader && !isMe && (
         <div className={styles.buttons}>
           <button onClick={giveLeaderHandler} className={styles["make-group-leader-button"]}>

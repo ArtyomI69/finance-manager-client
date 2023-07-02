@@ -28,7 +28,7 @@ export const groupAPI = baseAPI.injectEndpoints({
     }),
     leaveGroup: build.mutation<void, void>({
       query: (body) => ({
-        url: "/teams/leave",
+        url: "/people/leave",
         method: "POST",
         body,
       }),
