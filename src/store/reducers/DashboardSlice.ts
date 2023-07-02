@@ -5,11 +5,13 @@ import { TransactionsVisualization } from "../../models/TransactionsVisualizatio
 interface DashboardState {
   timestamp: number;
   transactionsVisualization: TransactionsVisualization;
+  allTime: boolean;
 }
 
 const initialState: DashboardState = {
   timestamp: Date.now(),
   transactionsVisualization: "histogram--person",
+  allTime: false,
 };
 
 export const dashboardSlice = createSlice({
@@ -24,6 +26,9 @@ export const dashboardSlice = createSlice({
     },
     changeDate(state, action: PayloadAction<{ timestamp: number }>) {
       state.timestamp = action.payload.timestamp;
+    },
+    changeAlltime(state, action: PayloadAction<{ allTime: boolean }>) {
+      state.allTime = action.payload.allTime;
     },
   },
 });

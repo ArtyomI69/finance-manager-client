@@ -5,7 +5,8 @@ import { TransactionsVisualization } from "../../../models/TransactionsVisualiza
 import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
 import { dashboardSlice } from "../../../store/reducers/DashboardSlice";
 import SelectorBox from "../../../components/SelectorBox/SelectorBox";
-import MonthPicker from "../MonthPicker/MonthPicker";
+import MonthPicker from "./MonthPicker/MonthPicker";
+import CheckBox from "../../../components/CheckBox/CheckBox";
 
 interface IBoxOption {
   text: string;
@@ -24,7 +25,7 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const ChartForm: FC = () => {
-  const { transactionsVisualization } = useAppSelector((state) => state.dashboardReducer);
+  const { transactionsVisualization, allTime } = useAppSelector((state) => state.dashboardReducer);
   const dispatch = useAppDispatch();
 
   const selectorBoxChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -33,6 +34,10 @@ const ChartForm: FC = () => {
         transactionsVisualization: e.target.value as TransactionsVisualization,
       })
     );
+  };
+
+  const checkboxChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(dashboardSlice.actions.changeAlltime({ allTime: e.target.checked }));
   };
 
   return (
@@ -44,7 +49,8 @@ const ChartForm: FC = () => {
         selectedValue={transactionsVisualization}
         onChange={selectorBoxChangeHandler}
       />
-      <MonthPicker />
+      <MonthPicker disabled={allTime} />
+      <CheckBox label="За всё время" checked={allTime} onChange={checkboxChangeHandler} />
     </form>
   );
 };

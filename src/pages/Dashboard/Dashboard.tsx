@@ -10,12 +10,13 @@ import BalanceContainer from "./BalanceContainer/BalanceContainer";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Dashboard: FC = () => {
-  const { timestamp, transactionsVisualization } = useAppSelector(
+  const { timestamp, transactionsVisualization, allTime } = useAppSelector(
     (state) => state.dashboardReducer
   );
   const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery({
     timestamp,
     transactionsVisualization,
+    allTime,
   });
   useEffect(() => {
     if (isError) toast.error("Не удалось получить транзакции. Проверьте ваше интернет подключение");

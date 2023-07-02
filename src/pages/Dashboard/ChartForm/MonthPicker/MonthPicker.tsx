@@ -5,10 +5,14 @@ import ru from "date-fns/locale/ru";
 registerLocale("ru", ru);
 
 import styles from "./MonthPicker.module.css";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { dashboardSlice } from "../../../store/reducers/DashboardSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { dashboardSlice } from "../../../../store/reducers/DashboardSlice";
 
-const MonthPicker: FC = () => {
+interface MonthPickerProps {
+  disabled?: boolean;
+}
+
+const MonthPicker: FC<MonthPickerProps> = ({ disabled }) => {
   const { timestamp } = useAppSelector((state) => state.dashboardReducer);
   const dispatch = useAppDispatch();
 
@@ -20,6 +24,7 @@ const MonthPicker: FC = () => {
     <div className={styles["month-picker"]}>
       <label htmlFor="month-picker">Месяц</label>
       <DatePicker
+        disabled={disabled}
         selected={new Date(timestamp)}
         onChange={datePickerChangeHandler}
         minDate={new Date("1970")}

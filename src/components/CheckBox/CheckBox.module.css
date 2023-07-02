@@ -1,0 +1,11 @@
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.checkbox input {
+  width: 2.4rem;
+  height: 2.4rem;
+}
