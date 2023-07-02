@@ -26,6 +26,7 @@ const selectorBoxOptions: IBoxOption[] = [
 const Profile: FC = () => {
   const { data, isLoading, isError } = userAPI.useFetchMeQuery();
   const [updateMe, { isError: isUpdateError, isSuccess }] = userAPI.useUpdateMeMutation();
+
   useEffect(() => {
     if (isError) toast.error("Не удалось загрузить данные! Пожалуйста повторите попытку позже");
     if (isUpdateError)

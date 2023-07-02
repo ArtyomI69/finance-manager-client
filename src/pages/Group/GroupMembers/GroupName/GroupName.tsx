@@ -18,7 +18,7 @@ const GroupName: FC<GroupNameProps> = ({ isGroupLeader }) => {
   useEffect(() => {
     if (isError) toast.error("Не удалось обновить название группы. Пожалуйста попробуйте позже");
     if (isSuccess) toast.success("Название группы успешно изменено");
-  }, [isError]);
+  }, [isError, isSuccess]);
 
   const editGroupNameHandler = () => {
     setIsEditing(true);
