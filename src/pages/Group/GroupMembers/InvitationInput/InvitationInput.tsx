@@ -1,11 +1,19 @@
-import { FC, useRef } from "react";
+import { FC, useRef, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import styles from "./InvitationInput.module.css";
 import { groupAPI } from "../../../../store/services/GroupService";
 
 const InvitationInput: FC = () => {
-  const [addInvitation] = groupAPI.useAddInvitationMutation();
+  const [addInvitation, { isSuccess, isError }] = groupAPI.useAddInvitationMutation();
   const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (isError)
+      toast.error(
+        "Не удалось пригласить пользователя либо данный пользователь уже приглашён. Убедитесь что указан верный id"
+      );
+    if (isSuccess) toast.success("Пользователь успешно приглашён в группу");
+  }, [isError, isSuccess]);
 
   const invitePerson = async () => {
     await addInvitation({ personTo: { id: +inputRef.current!.value } });

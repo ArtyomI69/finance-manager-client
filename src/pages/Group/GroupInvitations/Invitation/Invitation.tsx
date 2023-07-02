@@ -1,12 +1,31 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 import styles from "./Invitation.module.css";
+import { groupAPI } from "../../../../store/services/GroupService";
 import { IInvitation } from "../../../../models/IInvitations";
 import UserPhoto from "../../../../components/UserPhoto/UserPhoto";
 
-const Invitation: FC<IInvitation> = ({ personFrom: { full_name, gender, team } }) => {
+const Invitation: FC<IInvitation> = ({ personFrom: { full_name, gender, team }, id }) => {
+  const [acceptInvitation, { isError, isSuccess }] = groupAPI.useAcceptInvitationMutation();
+  const [declineInvitation, { isError: isDeclineError }] = groupAPI.useDeclineInvitationMutation();
+
+  useEffect(() => {
+    if (isError) toast.error("Не удалось принять приглашение");
+    if (isDeclineError) toast.error("Не удалось удалить приглашение, пожалуйста попробуйте позже");
+    if (isSuccess) toast.success("Приглашение успешно принято");
+  }, [isError, isSuccess, isDeclineError]);
+
+  const acceptInvitationHandler = () => {
+    acceptInvitation({ id });
+  };
+
+  const declineInvitationHandler = () => {
+    declineInvitation({ id });
+  };
+
   return (
     <li className={styles.invitation}>
       <UserPhoto gender={gender} />
@@ -14,10 +33,10 @@ const Invitation: FC<IInvitation> = ({ personFrom: { full_name, gender, team } }
         <span>{full_name}</span> пришлашает вас в <span>{team.name}</span>
       </p>
       <div className={styles.buttons}>
-        <button className={styles["accept-button"]}>
+        <button onClick={acceptInvitationHandler} className={styles["accept-button"]}>
           <FontAwesomeIcon icon={faCheck} />
         </button>
-        <button className={styles["decline-button"]}>
+        <button onClick={declineInvitationHandler} className={styles["decline-button"]}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>

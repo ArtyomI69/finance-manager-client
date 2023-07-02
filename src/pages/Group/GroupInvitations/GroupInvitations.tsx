@@ -13,8 +13,8 @@ const GroupInvitations: FC = () => {
   return (
     <div className={styles["group-invitations"]}>
       <ul>
-        {data!.map(({ personFrom }) => (
-          <Invitation personFrom={personFrom} />
+        {data?.map(({ id, personFrom }) => (
+          <Invitation key={id} personFrom={personFrom} id={id} />
         ))}
       </ul>
     </div>

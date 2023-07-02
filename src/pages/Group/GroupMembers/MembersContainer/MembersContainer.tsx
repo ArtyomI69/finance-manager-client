@@ -27,6 +27,7 @@ const MembersContainer: FC<MembersContainerProps> = ({ isGroupLeader }) => {
           <Member
             key={id}
             isMe={meData?.id === id}
+            id={id}
             balance={balance}
             gender={gender}
             name={full_name}

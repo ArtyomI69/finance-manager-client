@@ -10,6 +10,22 @@ export const groupAPI = baseAPI.injectEndpoints({
       }),
       providesTags: () => ["members"],
     }),
+    giveLeader: build.mutation<void, { id: number }>({
+      query: (body) => ({
+        url: "/people/giveLeader",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_, error) => (!error ? ["members", "user"] : []),
+    }),
+    kickMember: build.mutation<void, { id: number }>({
+      query: (body) => ({
+        url: "/people/kick",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_, error) => (!error ? ["members"] : []),
+    }),
     fetchGroupName: build.query<{ name: string }, void>({
       query: () => ({
         url: "/teams/my",
@@ -37,6 +53,23 @@ export const groupAPI = baseAPI.injectEndpoints({
         body,
       }),
       invalidatesTags: (_, error) => (!error ? ["groupName"] : []),
+    }),
+    acceptInvitation: build.mutation<void, { id: number }>({
+      query: (body) => ({
+        url: `/invitations/accept`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_, error) =>
+        !error ? ["groupName", "invitations", "members", "transaction", "user"] : [],
+    }),
+    declineInvitation: build.mutation<void, { id: number }>({
+      query: (body) => ({
+        url: `/invitations/delete`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_, error) => (!error ? ["invitations"] : []),
     }),
   }),
 });

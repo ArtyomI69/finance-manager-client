@@ -10,12 +10,19 @@
   border-radius: 9px;
 }
 
+.member img,
+.member p,
+.member div {
+  width: 25%;
+}
+
 .member img {
   max-width: 4.8rem;
 }
 
 .name,
-.balance span {
+.balance span,
+.me {
   color: #000;
 }
 
