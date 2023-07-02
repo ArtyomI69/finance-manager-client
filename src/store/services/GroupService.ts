@@ -26,6 +26,14 @@ export const groupAPI = baseAPI.injectEndpoints({
       }),
       invalidatesTags: (_, error) => (!error ? ["members"] : []),
     }),
+    leaveGroup: build.mutation<void, void>({
+      query: (body) => ({
+        url: "/teams/leave",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_, error) => (!error ? ["groupName", "members", "user"] : []),
+    }),
     fetchGroupName: build.query<{ name: string }, void>({
       query: () => ({
         url: "/teams/my",

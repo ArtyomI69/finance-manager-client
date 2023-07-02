@@ -31,7 +31,7 @@ const App: FC = () => {
         rtl={false}
         pauseOnFocusLoss={false}
         draggable
-        pauseOnHover={false}
+        pauseOnHover={true}
         theme="colored"
       />
       <div className={styles.app}>

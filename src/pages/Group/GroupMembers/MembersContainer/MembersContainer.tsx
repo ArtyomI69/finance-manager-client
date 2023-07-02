@@ -23,15 +23,16 @@ const MembersContainer: FC<MembersContainerProps> = ({ isGroupLeader }) => {
   return (
     <div className={styles["members-container"]}>
       <ul>
-        {data?.map(({ balance, gender, full_name, id }) => (
+        {data?.map(({ balance, gender, full_name, id, role }) => (
           <Member
             key={id}
-            isMe={meData?.id === id}
             id={id}
             balance={balance}
             gender={gender}
             name={full_name}
             isGroupLeader={isGroupLeader}
+            role={role}
+            isMe={meData?.id === id}
           />
         ))}
       </ul>

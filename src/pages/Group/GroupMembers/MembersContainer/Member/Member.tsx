@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 import styles from "./Member.module.css";
 import { groupAPI } from "../../../../../store/services/GroupService";
+import { Role } from "../../../../../models/Role";
 import { Gender } from "../../../../../models/Gender";
 import UserPhoto from "../../../../../components/UserPhoto/UserPhoto";
 
@@ -15,9 +16,10 @@ interface MemberProps {
   balance: number;
   isMe: boolean;
   id: number;
+  role: Role;
 }
 
-const Member: FC<MemberProps> = ({ isGroupLeader, name, balance, gender, isMe, id }) => {
+const Member: FC<MemberProps> = ({ isGroupLeader, name, balance, gender, isMe, id, role }) => {
   const [giveLeader, { isSuccess, isError }] = groupAPI.useGiveLeaderMutation();
   const [kickMember, { isSuccess: isKickSuccess, isError: isKickError }] =
     groupAPI.useKickMemberMutation();
@@ -44,6 +46,8 @@ const Member: FC<MemberProps> = ({ isGroupLeader, name, balance, gender, isMe, i
       <p className={styles.balance}>
         Баланс:<span>{balance}₽</span>
       </p>
+      {isMe && <p className={styles.role}>Я</p>}
+      {role === "ROLE_LEADER" && !isMe} <p className={styles.role}>Лидер</p>
       {isGroupLeader && !isMe && (
         <div className={styles.buttons}>
           <button onClick={giveLeaderHandler} className={styles["make-group-leader-button"]}>
@@ -54,7 +58,6 @@ const Member: FC<MemberProps> = ({ isGroupLeader, name, balance, gender, isMe, i
           </button>
         </div>
       )}
-      {isMe && <p className={styles.me}>Я</p>}
     </li>
   );
 };

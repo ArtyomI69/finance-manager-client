@@ -11,3 +11,13 @@
   cursor: pointer;
   margin-top: auto;
 }
+
+/**************************/
+/* Ниже 1072px  */
+/**************************/
+
+@media (max-width: 67em) {
+  .leave-group-button {
+    margin-top: 0;
+  }
+}
