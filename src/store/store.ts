@@ -2,13 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import dashboardReducer from "./reducers/DashboardSlice";
 import authReducer from "./reducers/AuthSlice";
-import messageReducer from "./reducers/MessasgesSlice";
 import { baseAPI } from "./services/baseAPI";
 
 const rootReducer = combineReducers({
   dashboardReducer,
   authReducer,
-  messageReducer,
   [baseAPI.reducerPath]: baseAPI.reducer,
 });
 

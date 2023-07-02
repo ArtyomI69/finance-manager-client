@@ -1,4 +1,6 @@
 import { FC, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./App.module.css";
 import { useAppSelector } from "./hooks/redux";
@@ -7,7 +9,6 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 import FullScreenLoader from "./components/FullScreenLoader/FullScreenLoader";
-import MessageContainer from "./components/MessageContainer/MessageContainer";
 
 const App: FC = () => {
   const { isAuth } = useAppSelector((state) => state.authReducer);
@@ -20,14 +21,24 @@ const App: FC = () => {
 
   return (
     <>
-      <MessageContainer />
+      <ToastContainer
+        bodyStyle={{ fontSize: "1.6rem" }}
+        position="top-center"
+        autoClose={7000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="colored"
+      />
       <div className={styles.app}>
         {isLoading && <FullScreenLoader />}
-        {!isAuth && <LoginSignUp />}
-        {isAuth && <Header />}
-        {isAuth && <Main />}
-        {/* <Header /> */}
-        {/* <Main /> */}
+        {!isAuth && !isLoading && <LoginSignUp />}
+        {isAuth && !isLoading && <Header />}
+        {isAuth && !isLoading && <Main />}
       </div>
     </>
   );

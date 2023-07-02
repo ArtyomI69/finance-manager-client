@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
+import { toast } from "react-toastify";
 
 import { authAPI } from "../../../store/services/AuthService";
 import { IProfile } from "../../../models/IProfile";
@@ -8,7 +9,6 @@ import { Gender } from "../../../models/Gender";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
 import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
-import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 interface IBoxOption {
   text: string;
@@ -22,6 +22,9 @@ const selectorBoxOptions: IBoxOption[] = [
 
 const SignUp: FC = () => {
   const [register, { isError }] = authAPI.useRegisterMutation();
+  useEffect(() => {
+    if (isError) toast.error("Не удалось зарегестрироваться, пожалуйста попробуйте позже");
+  }, [isError]);
 
   const initialValues: IProfile = {
     email: "",
@@ -50,9 +53,6 @@ const SignUp: FC = () => {
 
   return (
     <>
-      {isError && (
-        <ErrorModal message="Не удалось зарегестрироваться, пожалуйста попробуйте позже" />
-      )}
       <LoginSignUpNavbar />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formik) => (

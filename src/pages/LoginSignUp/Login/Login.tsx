@@ -1,15 +1,19 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ObjectSchema } from "yup";
+import { toast } from "react-toastify";
 
 import { ILogin } from "../../../models/ILogin";
 import { authAPI } from "../../../store/services/AuthService";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../components/InputField/InputField";
-import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
 const Login: FC = () => {
   const [loginUser, { isError }] = authAPI.useLoginMutation();
+
+  useEffect(() => {
+    if (isError) toast.error("Пользователя с данным email или паролем не существует");
+  }, [isError]);
 
   const initialValues: ILogin = {
     email: "",
@@ -30,7 +34,6 @@ const Login: FC = () => {
 
   return (
     <>
-      {isError && <ErrorModal message="Пользователя с данным email или паролем не существует" />}
       <LoginSignUpNavbar />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formik) => (

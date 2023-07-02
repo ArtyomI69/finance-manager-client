@@ -1,8 +1,8 @@
 /* eslint-disable no-empty */
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ref } from "yup";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import styles from "./Profile.module.css";
 import { userAPI } from "../../store/services/UserService";
@@ -12,7 +12,6 @@ import UserId from "./UserId/UserId";
 import InputField from "../../components/InputField/InputField";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 interface IBoxOption {
   text: string;
@@ -26,8 +25,13 @@ const selectorBoxOptions: IBoxOption[] = [
 
 const Profile: FC = () => {
   const { data, isLoading, isError } = userAPI.useFetchMeQuery();
-  const [updateMe, { isError: isUpdateError }] = userAPI.useUpdateMeMutation();
-  const navigate = useNavigate();
+  const [updateMe, { isError: isUpdateError, isSuccess }] = userAPI.useUpdateMeMutation();
+  useEffect(() => {
+    if (isError) toast.error("Не удалось загрузить данные! Пожалуйста повторите попытку позже");
+    if (isUpdateError)
+      toast.error("Не удалось обновить данные! Пожалуйста повторите попытку позже");
+    if (isSuccess) toast.success("Ваши данные успешно обновленны");
+  }, [isError, isUpdateError, isSuccess]);
 
   const initialValues: IProfile = {
     full_name: data!.full_name,
@@ -49,49 +53,29 @@ const Profile: FC = () => {
 
   const onSubmit = async (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
     onSubmitProps.setSubmitting(true);
-    const payload = (await updateMe(values)) as { error: object };
-    if (payload.error) return;
-    navigate("/");
+    await updateMe(values);
   };
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <>
-      {isError && (
-        <ErrorModal message="Не удалось загрузить данные! Пожалуйста повторите попытку позже" />
-      )}
-      {isUpdateError && (
-        <ErrorModal message="Не удалось обновить данные! Пожалуйста повторите попытку позже" />
-      )}
-      <div className={styles.profile}>
-        <UserId />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {(formik) => (
-            <Form>
-              <div>
-                <InputField label="Имя" type="text" name="full_name" />
-                <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
-                <InputField label="Email" type="email" name="email" />
-                <InputField label="Пароль" type="password" name="password" />
-                <InputField
-                  label="Потвердите новый пароль"
-                  type="password"
-                  name="confirmPassword"
-                />
-              </div>
-              <button disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}>
-                Сохранить
-              </button>
-            </Form>
-          )}
-        </Formik>
-      </div>
-    </>
+    <div className={styles.profile}>
+      <UserId />
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {(formik) => (
+          <Form>
+            <div>
+              <InputField label="Имя" type="text" name="full_name" />
+              <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
+              <InputField label="Email" type="email" name="email" />
+              <InputField label="Пароль" type="password" name="password" />
+              <InputField label="Потвердите новый пароль" type="password" name="confirmPassword" />
+            </div>
+            <button disabled={!formik.isValid || formik.isSubmitting}>Сохранить</button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
