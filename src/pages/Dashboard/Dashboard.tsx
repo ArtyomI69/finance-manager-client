@@ -13,7 +13,7 @@ const Dashboard: FC = () => {
   const { timestamp, transactionsVisualization, allTime } = useAppSelector(
     (state) => state.dashboardReducer
   );
-  const { data, isLoading, isError } = transactionsAPI.useFetchTransactionsMonthQuery({
+  const { data, isLoading, isFetching, isError } = transactionsAPI.useFetchTransactionsQuery({
     timestamp,
     transactionsVisualization,
     allTime,
@@ -25,9 +25,9 @@ const Dashboard: FC = () => {
   return (
     <div className={styles.dashboard}>
       <ChartForm />
-      {(isLoading || isError) && <LoadingSpinner />}
-      {!isLoading && !isError && <TransactionsData transactions={data!} />}
-      {!isLoading && !isError && <BalanceContainer transactions={data!} />}
+      {(isLoading || isError || isFetching) && <LoadingSpinner />}
+      {!isLoading && !isFetching && !isError && <TransactionsData transactions={data!} />}
+      {!isLoading && !isFetching && !isError && <BalanceContainer transactions={data!} />}
     </div>
   );
 };

@@ -23,27 +23,27 @@ const getFetchTransactionsUrl = ({
     case "table--group":
     case "histogram--group": {
       if (allTime) url = "/categoryTransactions/team";
-      url = "/categoryTransactions/team/month";
+      else url = "/categoryTransactions/team/month";
       break;
     }
     case "piechart--person--income": {
       if (allTime) url = "/categoryTransactions/person/income";
-      url = "/categoryTransactions/person/income/month";
+      else url = "/categoryTransactions/person/income/month";
       break;
     }
     case "piechart--person--expenses": {
       if (allTime) url = "/categoryTransactions/person/expenses";
-      url = "/categoryTransactions/person/expenses/month";
+      else url = "/categoryTransactions/person/expenses/month";
       break;
     }
     case "piechart--group--income": {
       if (allTime) url = "/categoryTransactions/team/income";
-      url = "/categoryTransactions/team/income/month";
+      else url = "/categoryTransactions/team/income/month";
       break;
     }
     case "piechart--group--expenses": {
       if (allTime) url = "/categoryTransactions/team/expenses";
-      url = "/categoryTransactions/team/expenses/month";
+      else url = "/categoryTransactions/team/expenses/month";
       break;
     }
     default:
@@ -60,10 +60,7 @@ interface FetchTransactionsInput {
 
 export const transactionsAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
-    fetchTransactionsMonth: build.query<
-      ITransaction[] | IGroupedTransaction[],
-      FetchTransactionsInput
-    >({
+    fetchTransactions: build.query<ITransaction[] | IGroupedTransaction[], FetchTransactionsInput>({
       query: ({ transactionsVisualization, timestamp, allTime }) => ({
         url: getFetchTransactionsUrl({ transactionsVisualization, allTime }),
         params: {
