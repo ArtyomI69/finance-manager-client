@@ -19,9 +19,21 @@
   font-size: 1.6rem;
   color: #555;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.active {
+.group-navbar ul li a span {
+  color: #fff;
+  background-color: red;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  padding: 8px;
+  margin-left: 0.8rem;
+}
+
+.active p {
   text-decoration: underline !important;
   color: #000 !important;
 }
