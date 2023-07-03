@@ -5,6 +5,7 @@ import styles from "./AuthorizationForm.module.css";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import ResetPassword from "./ResetPassword/ResetPassword";
 
 const AuthorizationForm: FC = () => {
   return (
@@ -13,6 +14,7 @@ const AuthorizationForm: FC = () => {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgot" element={<ForgotPassword />} />
+        <Route path="reset/:id" element={<ResetPassword />} />
         <Route path="/*" element={<Navigate to={"login"} />} />
       </Routes>
     </div>
