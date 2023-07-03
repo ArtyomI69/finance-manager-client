@@ -9,7 +9,6 @@ const Authorization: FC = () => {
     <div className={styles.authorization}>
       <Routes>
         <Route path="/authorization/*" element={<LoginSignUp />} />
-        <Route path="/confirmEmail" element={<div>CONFIRM</div>} />
         <Route path="/*" element={<Navigate to="/authorization" />} />
       </Routes>
     </div>
