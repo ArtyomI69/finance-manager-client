@@ -4,13 +4,14 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
 import styles from "./Invitation.module.css";
-import { groupAPI } from "../../../../store/services/GroupService";
+import { invitationsAPI } from "../../../../store/services/InvitationService";
 import { IInvitation } from "../../../../models/IInvitations";
 import UserPhoto from "../../../../components/UserPhoto/UserPhoto";
 
 const Invitation: FC<IInvitation> = ({ personFrom: { full_name, gender, team }, id }) => {
-  const [acceptInvitation, { isError, isSuccess }] = groupAPI.useAcceptInvitationMutation();
-  const [declineInvitation, { isError: isDeclineError }] = groupAPI.useDeclineInvitationMutation();
+  const [acceptInvitation, { isError, isSuccess }] = invitationsAPI.useAcceptInvitationMutation();
+  const [declineInvitation, { isError: isDeclineError }] =
+    invitationsAPI.useDeclineInvitationMutation();
 
   useEffect(() => {
     if (isError) toast.error("Не удалось принять приглашение");

@@ -2,10 +2,10 @@ import { FC, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 
 import styles from "./InvitationInput.module.css";
-import { groupAPI } from "../../../../store/services/GroupService";
+import { invitationsAPI } from "../../../../store/services/InvitationService";
 
 const InvitationInput: FC = () => {
-  const [addInvitation, { isSuccess, isError }] = groupAPI.useAddInvitationMutation();
+  const [addInvitation, { isSuccess, isError }] = invitationsAPI.useAddInvitationMutation();
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (isError)

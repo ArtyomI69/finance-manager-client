@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import styles from "./GroupInvitations.module.css";
-import { groupAPI } from "../../../store/services/GroupService";
+import { invitationsAPI } from "../../../store/services/InvitationService";
 import Invitation from "./Invitation/Invitation";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 const GroupInvitations: FC = () => {
-  const { data, isLoading } = groupAPI.useFetchAllInvitationsQuery();
+  const { data, isLoading } = invitationsAPI.useFetchAllInvitationsQuery();
 
   if (isLoading) return <LoadingSpinner />;
 

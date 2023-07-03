@@ -1,6 +1,5 @@
 import { baseAPI } from "./baseAPI";
 import { IPerson } from "../../models/IPerson";
-import { IInvitation } from "../../models/IInvitations";
 
 export const groupAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
@@ -32,7 +31,8 @@ export const groupAPI = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: (_, error) => (!error ? ["groupName", "members", "user"] : []),
+      invalidatesTags: (_, error) =>
+        !error ? ["groupName", "members", "user", "transaction"] : [],
     }),
     fetchGroupName: build.query<{ name: string }, void>({
       query: () => ({
@@ -47,37 +47,6 @@ export const groupAPI = baseAPI.injectEndpoints({
         body,
       }),
       invalidatesTags: (_, error) => (!error ? ["groupName"] : []),
-    }),
-    fetchAllInvitations: build.query<IInvitation[], void>({
-      query: () => ({
-        url: "/invitations/toMe",
-      }),
-      providesTags: () => ["invitations"],
-    }),
-    addInvitation: build.mutation<void, { personTo: { id: number } }>({
-      query: (body) => ({
-        url: "/invitations/add",
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: (_, error) => (!error ? ["groupName"] : []),
-    }),
-    acceptInvitation: build.mutation<void, { id: number }>({
-      query: (body) => ({
-        url: `/invitations/accept`,
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: (_, error) =>
-        !error ? ["groupName", "invitations", "members", "transaction", "user"] : [],
-    }),
-    declineInvitation: build.mutation<void, { id: number }>({
-      query: (body) => ({
-        url: `/invitations/delete`,
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: (_, error) => (!error ? ["invitations"] : []),
     }),
   }),
 });
