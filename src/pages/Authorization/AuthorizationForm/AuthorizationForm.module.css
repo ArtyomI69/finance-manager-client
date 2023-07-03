@@ -58,6 +58,11 @@
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+.login-sign-up form a {
+  color: #555;
+  font-size: 1.6rem;
+}
+
 .login-sign-up button:hover {
   background-color: #dbe4ff;
 }

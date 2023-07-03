@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 import { authAPI } from "../../../../store/services/AuthService";
 import { IProfile } from "../../../../models/IProfile";
@@ -71,6 +72,7 @@ const SignUp: FC = () => {
             >
               Зарегистрироваться
             </button>
+            <Link to="/authorization/forgot">Забыл пароль</Link>
           </Form>
         )}
       </Formik>

@@ -2,11 +2,11 @@ import { FC } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import styles from "./GroupNavbar.module.css";
-import { groupAPI } from "../../../store/services/GroupService";
+import { invitationsAPI } from "../../../store/services/InvitationService";
 
 const GroupNavbar: FC = () => {
   const { pathname } = useLocation();
-  const { data } = groupAPI.useFetchAllInvitationsQuery();
+  const { data } = invitationsAPI.useFetchAllInvitationsQuery();
 
   return (
     <div className={styles["group-navbar"]}>
@@ -16,7 +16,7 @@ const GroupNavbar: FC = () => {
             to="/group/members"
             className={({ isActive }) => (isActive || pathname === "/group" ? styles.active : "")}
           >
-            Участники
+            <p>Участники</p>
           </NavLink>
         </li>
         <li>
