@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import styles from "./LoginSignUp.module.css";
+import styles from "./AuthorizationForm.module.css";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 
-const LoginSignUp: FC = () => {
+const AuthorizationForm: FC = () => {
   return (
     <div className={styles["login-sign-up"]}>
       <Routes>
@@ -17,4 +17,4 @@ const LoginSignUp: FC = () => {
   );
 };
 
-export default LoginSignUp;
+export default AuthorizationForm;
