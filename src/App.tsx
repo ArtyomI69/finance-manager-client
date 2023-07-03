@@ -7,7 +7,7 @@ import { useAppSelector } from "./hooks/redux";
 import { authAPI } from "./store/services/AuthService";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
-import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
+import Authorization from "./pages/Authorization/Authorization";
 import FullScreenLoader from "./components/FullScreenLoader/FullScreenLoader";
 
 const App: FC = () => {
@@ -34,12 +34,14 @@ const App: FC = () => {
         pauseOnHover={true}
         theme="colored"
       />
-      <div className={styles.app}>
-        {isLoading && <FullScreenLoader />}
-        {!isAuth && !isLoading && <LoginSignUp />}
-        {isAuth && !isLoading && <Header />}
-        {isAuth && !isLoading && <Main />}
-      </div>
+      {!isAuth && !isLoading && <Authorization />}
+      {isLoading && <FullScreenLoader />}
+      {isAuth && !isLoading && (
+        <div className={styles.app}>
+          <Header />
+          <Main />
+        </div>
+      )}
     </>
   );
 };

@@ -9,9 +9,9 @@ const LoginSignUp: FC = () => {
   return (
     <div className={styles["login-sign-up"]}>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/*" element={<Navigate to={"/login"} />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="/*" element={<Navigate to={"login"} />} />
       </Routes>
     </div>
   );
