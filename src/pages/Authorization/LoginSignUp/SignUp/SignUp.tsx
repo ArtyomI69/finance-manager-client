@@ -3,12 +3,12 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 import { toast } from "react-toastify";
 
-import { authAPI } from "../../../store/services/AuthService";
-import { IProfile } from "../../../models/IProfile";
-import { Gender } from "../../../models/Gender";
+import { authAPI } from "../../../../store/services/AuthService";
+import { IProfile } from "../../../../models/IProfile";
+import { Gender } from "../../../../models/Gender";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
-import InputField from "../../../components/InputField/InputField";
-import SelectorBoxField from "../../../components/SelectorBoxField/SelectorBoxField";
+import InputField from "../../../../components/InputField/InputField";
+import SelectorBoxField from "../../../../components/SelectorBoxField/SelectorBoxField";
 
 interface IBoxOption {
   text: string;

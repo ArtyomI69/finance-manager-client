@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import styles from "./Authorization.module.css";
-import LoginSignUp from "../LoginSignUp/LoginSignUp";
+import LoginSignUp from "./LoginSignUp/LoginSignUp";
 
 const Authorization: FC = () => {
   return (
