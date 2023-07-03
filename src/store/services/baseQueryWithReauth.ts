@@ -36,7 +36,7 @@ export const baseQueryWithReauth: BaseQueryFn<
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
 
-  const authEndpoints = ["register", "login", "refreshTokens", "logout"];
+  const authEndpoints = ["register", "login", "refreshTokens"];
   const isAuthRequest = authEndpoints.includes(api.endpoint);
   if (isAuthRequest) return result;
 
