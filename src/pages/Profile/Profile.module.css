@@ -46,6 +46,10 @@
   width: 100%;
 }
 
+.profile form input:disabled {
+  color: #555;
+}
+
 .profile form button {
   cursor: pointer;
   outline: none;

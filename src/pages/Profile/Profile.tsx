@@ -10,6 +10,7 @@ import { IProfile } from "../../models/IProfile";
 import { Gender } from "../../models/Gender";
 import UserId from "./UserId/UserId";
 import InputField from "../../components/InputField/InputField";
+import Input from "../../components/Input/Input";
 import SelectorBoxField from "../../components/SelectorBoxField/SelectorBoxField";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
@@ -34,27 +35,31 @@ const Profile: FC = () => {
     if (isSuccess) toast.success("Ваши данные успешно обновленны");
   }, [isError, isUpdateError, isSuccess]);
 
-  const initialValues: IProfile = {
+  const initialValues: Omit<IProfile, "email"> = {
     full_name: data!.full_name,
     gender: data!.gender,
-    email: data!.email,
     password: "",
     confirmPassword: "",
   };
 
   const validationSchema = object({
-    email: string()
-      .email("Введите email в правильном формате")
-      .required("Необходимо заполнить данное поле"),
     full_name: string().required("Необходимо заполнить данное поле"),
     gender: string<Gender>().required(),
     password: string(),
     confirmPassword: string().oneOf([ref("password")], "Пароли должны совпадать"),
   });
 
-  const onSubmit = async (values: IProfile, onSubmitProps: FormikHelpers<IProfile>) => {
+  const onSubmit = async (
+    values: Omit<IProfile, "email">,
+    onSubmitProps: FormikHelpers<Omit<IProfile, "email">>
+  ) => {
     onSubmitProps.setSubmitting(true);
-    await updateMe(values);
+    await updateMe({
+      email: data!.email,
+      full_name: values.full_name,
+      gender: values.gender,
+      password: values.password,
+    });
   };
 
   if (isLoading) return <LoadingSpinner />;
@@ -66,9 +71,9 @@ const Profile: FC = () => {
         {(formik) => (
           <Form>
             <div>
+              <Input label="Email" type="email" name="email" value={data!.email} disabled={true} />
               <InputField label="Имя" type="text" name="full_name" />
               <SelectorBoxField label="Пол" name="gender" options={selectorBoxOptions} />
-              <InputField label="Email" type="email" name="email" />
               <InputField label="Пароль" type="password" name="password" />
               <InputField label="Потвердите новый пароль" type="password" name="confirmPassword" />
             </div>
