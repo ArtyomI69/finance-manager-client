@@ -90,6 +90,14 @@ export const authAPI = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (data.error) return;
+
+          dispatch(authSlice.actions.setAuth(data));
+        } catch (error) {}
+      },
     }),
   }),
 });

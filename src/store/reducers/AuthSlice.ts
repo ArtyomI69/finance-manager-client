@@ -24,7 +24,6 @@ export const authSlice = createSlice({
       state.email = "";
     },
     setAuth(state, action: PayloadAction<IAuthResponse>) {
-      console.log(action.payload);
       state.isAuth = action.payload.person.confirmed === "T";
       state.token = action.payload.token;
       state.email = action.payload.person.email;

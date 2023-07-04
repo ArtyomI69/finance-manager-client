@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ObjectSchema, ref } from "yup";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { authAPI } from "../../../../store/services/AuthService";
 import { IResetPassword } from "../../../../models/IResetPassword";
@@ -11,7 +11,7 @@ import InputField from "../../../../components/InputField/InputField";
 
 const ResetPassword: FC = () => {
   const [resetPassword, { isError }] = authAPI.useResetPasswordMutation();
-  const params = useParams();
+  const { search } = useLocation();
 
   useEffect(() => {
     if (isError) toast.error("Не удалось изменить пароль. Пожалуйста попробоуйте позже");
@@ -31,7 +31,8 @@ const ResetPassword: FC = () => {
 
   const onSubmit = async (data: IResetPassword, onSubmitProps: FormikHelpers<IResetPassword>) => {
     onSubmitProps.setSubmitting(true);
-    await resetPassword({ token: params.token!, password: data.password });
+    const token = search.split("=")[1];
+    await resetPassword({ token, password: data.password });
   };
 
   return (

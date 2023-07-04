@@ -14,7 +14,7 @@ const AuthorizationForm: FC = () => {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgot" element={<ForgotPassword />} />
-        <Route path="reset/:token" element={<ResetPassword />} />
+        <Route path="reset" element={<ResetPassword />} />
         <Route path="/*" element={<Navigate to={"login"} />} />
       </Routes>
     </div>
