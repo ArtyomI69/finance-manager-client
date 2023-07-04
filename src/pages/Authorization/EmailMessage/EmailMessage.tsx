@@ -17,7 +17,7 @@ const EmailMessage: FC<EmailMessageProps> = ({ title }) => {
       <FontAwesomeIcon icon={faEnvelope} />
       <h1>{title}</h1>
       <p>
-        Потвердите ваш адрес электронной почты, нажав на ссылку, которую мы отправили на {email}
+        Подтвердите ваш адрес электронной почты, нажав на ссылку, которую мы отправили на {email}
       </p>
     </div>
   );

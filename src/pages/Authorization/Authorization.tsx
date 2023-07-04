@@ -13,7 +13,7 @@ const Authorization: FC = () => {
         <Route
           path="/confirmEmail"
           element={
-            <EmailMessage title="Благодарим вас за то что выбрали наш финансовый мэнэджер!" />
+            <EmailMessage title="Благодарим вас за то что выбрали наш финансовый менеджер!" />
           }
         />
         <Route
