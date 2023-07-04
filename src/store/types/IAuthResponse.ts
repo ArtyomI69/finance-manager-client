@@ -11,6 +11,7 @@ export interface IAuthResponse {
     gender: Gender;
     role: Role;
     team: number | null;
+    confirmed: "F" | "T";
   };
   error: string | null;
 }

@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { object, string, ref, ObjectSchema } from "yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { authAPI } from "../../../../store/services/AuthService";
 import { IProfile } from "../../../../models/IProfile";
@@ -22,10 +22,13 @@ const selectorBoxOptions: IBoxOption[] = [
 ];
 
 const SignUp: FC = () => {
-  const [register, { isError }] = authAPI.useRegisterMutation();
+  const [register, { isError, isSuccess }] = authAPI.useRegisterMutation();
+  const navigate = useNavigate();
   useEffect(() => {
     if (isError) toast.error("Не удалось зарегестрироваться, пожалуйста попробуйте позже");
-  }, [isError]);
+    if (isSuccess) navigate("/confirmEmail");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError, isSuccess]);
 
   const initialValues: IProfile = {
     email: "",

@@ -3,6 +3,7 @@ import { baseAPI } from "./baseAPI";
 import { ILogin } from "../../models/ILogin";
 import { IProfile } from "../../models/IProfile";
 import { IAuthResponse } from "../types/IAuthResponse";
+import { IForgotPassword } from "../../models/IForgotPassword";
 import { authSlice } from "../reducers/AuthSlice";
 
 export const authAPI = baseAPI.injectEndpoints({
@@ -69,6 +70,26 @@ export const authAPI = baseAPI.injectEndpoints({
           dispatch(authSlice.actions.logout());
         } catch (error) {}
       },
+    }),
+    forgotPassword: build.mutation<IAuthResponse, IForgotPassword>({
+      query: (body) => ({
+        url: "/api/v1/auth/forgotPassword",
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(body, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(authSlice.actions.setEmail(body));
+        } catch (error) {}
+      },
+    }),
+    resetPassword: build.mutation<IAuthResponse, { token: string; password: string }>({
+      query: (body) => ({
+        url: "/api/v1/auth/forgotPasswordConfirm",
+        method: "POST",
+        body,
+      }),
     }),
   }),
 });

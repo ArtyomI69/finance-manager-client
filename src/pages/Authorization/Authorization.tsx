@@ -13,22 +13,12 @@ const Authorization: FC = () => {
         <Route
           path="/confirmEmail"
           element={
-            <EmailMessage
-              title="Благодарим вас за то что выбрали наш финансовый мэнэджер!"
-              text="Потвердите ваш адрес электронной почты, нажав на ссылку, которую мы отправили на
-            bruh@mail.ru"
-            />
+            <EmailMessage title="Благодарим вас за то что выбрали наш финансовый мэнэджер!" />
           }
         />
         <Route
           path="/resetPasswordEmail"
-          element={
-            <EmailMessage
-              title="Потвердите изменение пароля"
-              text="Потвердите ваш адрес электронной почты, нажав на ссылку, которую мы отправили на
-          bruh@mail.ru"
-            />
-          }
+          element={<EmailMessage title="Потвердите изменение пароля" />}
         />
         <Route path="/*" element={<Navigate to="/authorization" />} />
       </Routes>

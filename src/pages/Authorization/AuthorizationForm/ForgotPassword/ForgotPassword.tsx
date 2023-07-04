@@ -1,12 +1,24 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { string, object, ObjectSchema } from "yup";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
+import { authAPI } from "../../../../store/services/AuthService";
 import { IForgotPassword } from "../../../../models/IForgotPassword";
 import LoginSignUpNavbar from "../LoginSignUpNavbar/LoginSignUpNavbar";
 import InputField from "../../../../components/InputField/InputField";
 
 const ForgotPassword: FC = () => {
+  const [forgotPassword, { isSuccess, isError }] = authAPI.useForgotPasswordMutation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isError) toast.error("Аккаунта с указаной почтой не существует");
+    if (isSuccess) navigate("/resetPasswordEmail");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError]);
+
   const initialValues: IForgotPassword = {
     email: "",
   };
@@ -19,7 +31,7 @@ const ForgotPassword: FC = () => {
 
   const onSubmit = async (data: IForgotPassword, onSubmitProps: FormikHelpers<IForgotPassword>) => {
     onSubmitProps.setSubmitting(true);
-    console.log(data);
+    await forgotPassword(data);
   };
 
   return (
