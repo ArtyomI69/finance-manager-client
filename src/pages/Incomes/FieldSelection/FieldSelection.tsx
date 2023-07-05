@@ -15,21 +15,29 @@ import { transactionsAPI } from "../../../store/services/TransactionsService";
 
 interface FieldSelectionProps {
   monthYear: Date;
+  transactionType: "income" | "expenses";
   setMonthYear: React.Dispatch<React.SetStateAction<Date>>;
   onSubmit: (values: IIncomes, onSubmitProps: FormikHelpers<IIncomes>) => void;
 }
 
-const FieldSelection: FC<FieldSelectionProps> = ({ monthYear, setMonthYear, onSubmit }) => {
+const FieldSelection: FC<FieldSelectionProps> = ({
+  monthYear,
+  setMonthYear,
+  onSubmit,
+  transactionType,
+}) => {
   const { data, isLoading, isError } = transactionsAPI.useFetchCategoryQuery();
   const [selectorBoxOptions, setSelectorBoxOptions] = useState<ICategories[]>([]);
 
   useEffect(() => {
     if (isError) toast.error("Не удалось загрузить данные! Пожалуйста повторите попытку позже");
     if (data) {
-      const options: ICategories[] = data.map((category: ICategories) => ({
-        id: category.id,
-        name: category.name,
-      }));
+      const options: ICategories[] = data
+        .filter(({ type }) => type === transactionType)
+        .map((category: ICategories) => ({
+          id: category.id,
+          name: category.name,
+        }));
       setSelectorBoxOptions(options);
     }
   }, [data, isError]);

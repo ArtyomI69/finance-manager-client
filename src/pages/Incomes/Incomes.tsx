@@ -37,10 +37,13 @@ const Incomes: FC = () => {
       sumSet(incomes);
     }
     if (dates) {
-      const options: ICategories[] = dates.map((category: ICategories) => ({
-        id: category.id,
-        name: category.name,
-      }));
+      const options: ICategories[] = dates
+        .filter((transation) => transation.type === "income")
+        .map((category: ICategories) => ({
+          id: category.id,
+          name: category.name,
+        }));
+      console.log(options);
       setSelectorBoxOptions(options);
     }
   }, [data, isUpdateError]);
@@ -59,7 +62,6 @@ const Incomes: FC = () => {
       category: { id: values.category as number },
     };
     await addTransaction(value);
-    console.log(value);
     onSubmitProps.setSubmitting(true);
     setTimeout(() => {
       onSubmitProps.setSubmitting(false);
@@ -80,7 +82,12 @@ const Incomes: FC = () => {
       <div className={styles.incomes}>
         <Sum value={sum} valueColor="green" />
         <div className={styles.default}>
-          <FieldSelection monthYear={monthYear} setMonthYear={setMonthYear} onSubmit={onSubmit} />
+          <FieldSelection
+            transactionType="income"
+            monthYear={monthYear}
+            setMonthYear={setMonthYear}
+            onSubmit={onSubmit}
+          />
           <div className={styles.box}>
             {boxs.map((value, index) => (
               <Box key={index} value={value} deleteBox={deleteBox} />
