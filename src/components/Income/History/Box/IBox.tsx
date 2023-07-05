@@ -1,7 +1,7 @@
 export interface IBox{
   id:number;
   category: string;
-  value: number;
+  value:  number;
   data: string;
   comment:string;
 }

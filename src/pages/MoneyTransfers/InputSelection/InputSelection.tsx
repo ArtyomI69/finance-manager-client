@@ -1,28 +1,56 @@
-import { FC } from "react";
+import { FC, useState } from "react";
+import { Formik, Form, FormikHelpers } from "formik";
+import { string, object, ref, ObjectSchema,number } from "yup";
 import styles from "./InputSelection.module.css";
-import Field from "../../../components/Income/Field/Field";
+import FieldInput from "../../../components/Income/Field/FieldInput";
 import FieldMonate from "../../../components/Income/Field/FieldMonate/FieldMonate";
-interface SelectionProps {
+import ButtonAdd from "../../../components/Income/Field/ButtonAdd/ButtonAdd";
+import { ISelectionInput } from "./ISelectionInput";
+import { ITransfers } from "../../../models/ITransfers";
+interface FieldSelectionProps{
   monthYear: Date;
   setMonthYear: React.Dispatch<React.SetStateAction<Date>>;
-  ValueRef: React.MutableRefObject<HTMLInputElement>;
-  IdClientRef:React.MutableRefObject<HTMLInputElement>;
-  addNewPost:() => void;
+  onSubmit: (values: ITransfers, onSubmitProps: FormikHelpers<ITransfers>) => void;
 }
-const InputSelection: FC<SelectionProps> = ({
-  ValueRef,
-  IdClientRef,
-  monthYear,
-  setMonthYear,
-  addNewPost,
-}) => {
+const FieldSelection: FC<FieldSelectionProps> = ({monthYear,setMonthYear,onSubmit }) => {
+ 
+
+  const initialValues: ITransfers = {
+    person_to_id:null,
+    amount: null,
+    createdAt: monthYear.getTime(),
+    description:""
+  };
+
+  const validationSchema: ObjectSchema<ITransfers> = object({
+    person_to_id: number().required("Необходимо заполнить данное поле").positive('Число должно быть положительным').typeError('Должно быть числом'),
+    amount: number().required("Необходимо заполнить данное поле").positive('Число должно быть положительным').typeError('Должно быть числом'),
+    createdAt: number().required("Необходимо заполнить данное поле"),
+    description:string().required("Необходимо заполнить данное поле"),
+  });
   return (
-    <div className={styles.inputselection}>
-      <Field placeholder="Введите ID" reff={ValueRef} />
-      <Field placeholder="Введите сумму" reff={IdClientRef} />
-      <FieldMonate monthYear={monthYear} setMonthYear={setMonthYear} />
-      <button onClick={addNewPost} className={styles.button}>Перевести</button>
-    </div>
+    <>
+      <div className={styles.fieldselection}>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {(formik) => (
+                <Form>
+                  <div>
+                  <FieldInput type="text" name="person_to_id" placeholder={'Введите id'} />
+                    <FieldInput type="text" name="amount" placeholder={'Введите сумму'} />
+                    <FieldMonate monthYear={monthYear} setMonthYear={setMonthYear} />
+                    <FieldInput type="text" name="description" placeholder={'Введите комментарий'} />
+                  </div>
+                  <ButtonAdd formik={formik} value="Сохранить"/>
+                </Form>
+              )}
+            </Formik>
+          </div>
+
+    </>
   );
 };
-export default InputSelection;
+export default FieldSelection;

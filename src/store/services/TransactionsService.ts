@@ -2,6 +2,8 @@ import { baseAPI } from "./baseAPI";
 import { ITransaction } from "../../models/ITransaction";
 import { TransactionsVisualization } from "../../models/TransactionsVisualization";
 import { IGroupedTransaction } from "../../models/IGroupedTransaction";
+import { IIncomes } from "../../models/IIncomes";
+import { ICategories } from "../../models/ICategories";
 
 interface FetchTransactionsUrlInput {
   transactionsVisualization: TransactionsVisualization;
@@ -68,6 +70,39 @@ export const transactionsAPI = baseAPI.injectEndpoints({
         },
       }),
       providesTags: () => ["transaction"],
+    }),
+    fetchIncomes: build.query<IIncomes[], void>({
+      query: () => ({
+        url: "/categoryTransactions/person/income/last?limit=10",
+      }),
+      providesTags: () => ["transaction"],
+    }),
+    fetchExpenses: build.query<IIncomes[], void>({
+      query: () => ({
+        url: "/categoryTransactions/person/expenses/last?limit=10",
+      }),
+      providesTags: () => ["transaction"],
+    }),
+    AddTransactions: build.mutation<void, IIncomes>({
+      query: (body) => ({
+        url: "/categoryTransactions/add",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: () => ["transaction", "user"],
+    }),
+    DeleteTransactions: build.mutation<void, { id: number }>({
+      query: (body) => ({
+        url: `/categoryTransactions/delete`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: () => ["transaction", "user"],
+    }),
+    fetchCategory: build.query<ICategories[], void>({
+      query: () => ({
+        url: "/categories",
+      }),
     }),
   }),
 });

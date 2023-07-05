@@ -1,46 +1,73 @@
-import { FC } from "react";
+import { FC, useState,useEffect } from "react";
+import { Formik, Form, FormikHelpers } from "formik";
+import { string, object, ref, ObjectSchema, number } from "yup";
 import styles from "./FieldSelection.module.css";
-import Field from "../../../components/Income/Field/Field";
+import { ISelection } from "./ISelection";
+import FieldInput from "../../../components/Income/Field/FieldInput";
 import FieldMonate from "../../../components/Income/Field/FieldMonate/FieldMonate";
-import SelectorBox from "../../../components/SelectorBox/SelectorBox";
-interface SelectionProps {
+import SelecterField from "../../../components/Income/Field/SelecterField/SelecterField";
+import ButtonAdd from "../../../components/Income/Field/ButtonAdd/ButtonAdd";
+import { userAPI } from "../../../store/services/UserService";
+import { ICategories } from "../../../models/ICategories";
+import { toast } from "react-toastify";
+import { IIncomes } from "../../../models/IIncomes";
+
+interface FieldSelectionProps{
   monthYear: Date;
   setMonthYear: React.Dispatch<React.SetStateAction<Date>>;
-  sumBoxRefs: React.MutableRefObject<HTMLInputElement>;
-  CommentBoxRefs: React.MutableRefObject<HTMLTextAreaElement>;
-  CategoryBoxRef: React.MutableRefObject<HTMLSelectElement>;
-  addNewPost:() => void;
+  onSubmit: (values: IIncomes, onSubmitProps: FormikHelpers<IIncomes>) => void;
 }
-const selectorBoxOptions = [
-  { text: "Биткоин", value: "Биткоин" },
-  { text: "Работа", value: "Работа" },
-  { text: "Подарок", value: "Подарок" },
-  { text: "Подработка", value: "Подработка" },
-];
-const FieldSelection: FC<SelectionProps> = ({
-  sumBoxRefs,
-  CommentBoxRefs,
-  CategoryBoxRef,
-  monthYear,
-  setMonthYear,
-  addNewPost,
-}) => {
+
+
+const FieldSelection: FC<FieldSelectionProps> = ({monthYear,setMonthYear,onSubmit }) => {
+const { data, isLoading, isError } = userAPI.useFetchCategoryQuery();
+const [selectorBoxOptions, setSelectorBoxOptions] = useState<ICategories[]>([]);
+
+useEffect(() => {
+  if (isError) toast.error("Не удалось загрузить данные! Пожалуйста повторите попытку позже");
+  if (data) {
+    const options: ICategories[] = data.map((category: ICategories) => ({
+      id: category.id,
+      name: category.name,
+    }));
+    setSelectorBoxOptions(options);
+  }
+}, [data, isError]);
+  const initialValues = {
+    amount: null,
+    createdAt: 0,
+    category: 1,
+    description: "",
+  };
+  const validationSchema = object({
+    amount: number().required("Необходимо заполнить данное поле").positive('Число должно быть положительным').typeError('Должно быть числом'),
+    createdAt: number().required("Необходимо заполнить данное поле"),
+    description: string().required("Необходимо заполнить данное поле"),
+  });
   return (
-    <div className={styles.fieldselection}>
-      <Field placeholder="Введите сумму" reff={sumBoxRefs} />
-      <FieldMonate monthYear={monthYear} setMonthYear={setMonthYear} />
-      <form className={styles["chart-form"]}>
-        <SelectorBox
-          options={selectorBoxOptions}
-          label="Категория"
-          CategoryBoxRef={CategoryBoxRef}
-        />
-      </form>
-      <textarea placeholder="Введите описание" ref={CommentBoxRefs}></textarea>
-      <button onClick={addNewPost} className={styles.button}>
-          Добавить
-        </button>
-    </div>
+    <>
+      <div className={styles.fieldselection}>
+        
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {(formik) => (
+                <Form>
+                  <div>
+                    <FieldInput type="text" name="amount" placeholder={'Введите сумму'}  />
+                    <FieldMonate monthYear={monthYear} setMonthYear={setMonthYear} />
+                    <SelecterField options={selectorBoxOptions} name="category" formik={formik} />
+                    <FieldInput type="text" name="description" placeholder={'Введите комментарий'} />
+                  </div>
+                  <ButtonAdd formik={formik} value="Сохранить"/>
+                </Form>
+              )}
+            </Formik>
+          </div>
+
+    </>
   );
 };
 export default FieldSelection;

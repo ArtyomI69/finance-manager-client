@@ -1,12 +1,12 @@
 .incomes {
     display: block;
+    background-color: #fff;
 }
 .default{
     display: flex;
-    justify-content: left;
-    align-items: left;
     flex-direction: row;
     position:static;
+    background-color:  #fff;
 }
 .box{
     height: 60rem;
@@ -16,4 +16,7 @@
     flex-direction: column;
     overflow:auto;
     overflow-x:hidden;
+    justify-content: right;
+    align-items: right;
+    background-color: #fff;
 }

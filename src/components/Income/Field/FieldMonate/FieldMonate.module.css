@@ -1,8 +1,12 @@
 .fieldMonate {
     display: flex;
+    margin-bottom: 3rem;
+    width: 55rem;
+    font-size: 16px;
   }
   
   .fieldMonateInput {
     outline: none; 
+    width: 2009%;
   }
   
